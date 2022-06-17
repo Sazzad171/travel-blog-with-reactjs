@@ -4,8 +4,8 @@ import App from './App';
 
 // Importing the Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
-// custom css
-import './assets/css/styles.css'
+// custom scss
+import './assets/scss/style.scss';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

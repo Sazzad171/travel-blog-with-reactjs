@@ -1,14 +1,16 @@
 import Header from './layout/Header';
 import Footer from './layout/Footer';
-import MainContent from './pages/MainContent';
+import Home from './pages/home/Home';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Header />
-      <MainContent />
+      <main>
+        <Home />
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }
 

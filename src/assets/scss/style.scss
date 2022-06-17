@@ -1,0 +1,22 @@
+@import url('utilities.scss');
+
+// header start
+header {
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+}
+header .logo {
+  width: 180px;
+}
+header .nav-link {
+  color: #fff;
+  font-weight: 500;
+}
+
+// home start
+.home-banner-area img {
+  height: 100vh;
+  object-fit: cover;
+}

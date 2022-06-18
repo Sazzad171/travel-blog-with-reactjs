@@ -23,6 +23,8 @@
 
 // color variables
 $blue: #3A78C9;
+$orange: #f05942;
+$red: #ea3248;
 $black: #333;
 $ash: #727272;
 $white: #fff;
@@ -141,6 +143,12 @@ label {
 .text-blue {
   color: $blue;
 }
+.text-orange {
+  color: $orange;
+}
+.text-red {
+  color: $red;
+}
 .text-black {
   color: $black;
 }
@@ -150,7 +158,7 @@ label {
 
 /* button style */
 .btn {
-	background: $blue none repeat scroll 0 0;
+	background: $red none repeat scroll 0 0;
 	border: medium none;
 	border-radius: 4px;
 	color: $white;

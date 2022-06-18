@@ -1,5 +1,14 @@
 @import url('utilities.scss');
 
+// color variables
+$blue: #3A78C9;
+$orange: #f05942;
+$red: #ea3248;
+$black: #333;
+$ash: #727272;
+$white: #fff;
+$dark: #1c1c1c;
+
 // header start
 header {
   top: 0;
@@ -7,12 +16,23 @@ header {
   left: 0;
   z-index: 1000;
   .logo {
-    width: 180px;
+    width: 210px;
   }
   .nav-link {
-    color: #fff;
+    color: $white;
     font-weight: 500;
+    padding-right: 12px !important;
+    padding-left: 12px !important;
   }
+  .nav-link:hover,
+  .nav-link:focus,
+  .show>.nav-link,
+  .nav-link.active {
+    color: $white !important;
+  }
+}
+header.white-variant {
+  background: linear-gradient(to right, $orange, $red);
 }
 
 // home start
@@ -35,12 +55,53 @@ header {
   }
   .btn {
     background-color: transparent;
-    border: 2px solid #fff;
-    color: #fff;
+    border: 2px solid $white;
+    color: $white;
     font-weight: 700;
-    :hover {
-      background-color: #fff;
-      color: #3A78C9;
+  }
+  .btn:hover {
+    background-color: $white;
+    color: $orange;
+  }
+}
+.tour-places-area {
+  .card {
+    img {
+      max-height: 235px;
+      object-fit: cover;
     }
+  }
+  .card-body {
+    padding: 20px 24px;
+    border-bottom-left-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+    transition: 0.4s;
+    .btn {
+      background: linear-gradient(to right, $orange, $red);
+      padding: 10px;
+      svg {
+        height: 26px;
+        width: auto;
+      }
+    }
+  }
+  .card:hover .card-body {
+    background: linear-gradient(to right, $orange, $red);
+    h4, p {
+      color: $white;
+    }
+    .btn {
+      background: $white;
+      svg {
+        color: $red;
+      }
+    }
+  }
+}
+
+footer {
+  background-color: $dark;
+  a:hover {
+    color: $orange;
   }
 }

@@ -32,6 +32,9 @@ $white: #fff;
 // default styles
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
 
+* {
+	transition: 0.4s;
+}
 html {
 	scroll-behavior: smooth;
 }
@@ -131,6 +134,9 @@ li {
 }
 p {
 	margin-bottom: 0;
+}
+small {
+	font-size: 14px;
 }
 label {
 	color: #7e7e7e;

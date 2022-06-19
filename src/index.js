@@ -6,6 +6,7 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // custom scss
 import './assets/scss/style.scss';
+import './assets/scss/responsive.scss';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

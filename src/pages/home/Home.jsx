@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import {Carousel, Col, Container, Row, Card} from 'react-bootstrap';
 
 // images
@@ -17,6 +18,7 @@ import "../../assets/plugins/slick/slick.css";
 import "../../assets/plugins/slick/slick.theme.css";
 
 export default function Home() {
+
   // slick slider
   const slickSettings = {
     dots: true,
@@ -60,7 +62,7 @@ export default function Home() {
                 <p className='mb-40'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                   <br /> Lorem Ipsum has been the industry's standard .
                 </p>
-                <a href="#fsa" className='btn'>View Places</a>
+                <Link to="/places" className='btn'>View Places</Link>
               </Carousel.Caption>
             </Carousel.Item>
 
@@ -74,7 +76,7 @@ export default function Home() {
                 <p className='mb-40'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                   <br /> Lorem Ipsum has been the industry's standard .
                 </p>
-                <a href="#fsa" className='btn'>View Places</a>
+                <Link to="/places" className='btn'>View Places</Link>
               </Carousel.Caption>
             </Carousel.Item>
 
@@ -88,7 +90,7 @@ export default function Home() {
                 <p className='mb-40'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                   <br /> Lorem Ipsum has been the industry's standard .
                 </p>
-                <a href="#fsa" className='btn'>View Places</a>
+                <Link to="/places" className='btn'>View Places</Link>
               </Carousel.Caption>
             </Carousel.Item>
           </Carousel>
@@ -222,7 +224,7 @@ export default function Home() {
           <Row>
 
             {/* video item */}
-            <Col md={4} className='mb-3 px-4'>
+            <Col md={4} className='mb-3 px-md-4'>
               <a href="#sdf">
                 <Card className='h-100 shadow border-0'>
                   <div className="card-img-wrapper position-relative">
@@ -241,7 +243,7 @@ export default function Home() {
             </Col>
 
             {/* video item */}
-            <Col md={4} className='mb-3 px-4'>
+            <Col md={4} className='mb-3 px-md-4'>
               <a href="#sdf">
                 <Card className='h-100 shadow border-0'>
                   <div className="card-img-wrapper position-relative">
@@ -260,7 +262,7 @@ export default function Home() {
             </Col>
 
             {/* video item */}
-            <Col md={4} className='mb-3 px-4'>
+            <Col md={4} className='mb-3 px-md-4'>
               <a href="#sdf">
                 <Card className='h-100 shadow border-0'>
                   <div className="card-img-wrapper position-relative">

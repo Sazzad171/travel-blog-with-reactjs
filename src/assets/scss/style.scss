@@ -30,6 +30,12 @@ header {
   .nav-link.active {
     color: $white !important;
   }
+  .navbar-toggler {
+    border-color: #fff;
+  }
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
 }
 header.white-variant {
   background: linear-gradient(to right, $orange, $red);
@@ -102,7 +108,7 @@ header.white-variant {
   .slider-item {
     img {
       width: 100%;
-      height: 390px;
+      height: 350px;
       object-fit: cover;
     }
     .place-name {

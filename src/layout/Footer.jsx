@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <>
       {/* footer top start */}
-      <footer className='bg-dark pt-60 pb-55'>
+      <footer className='footer-area bg-dark pt-60 pb-55'>
         <Container>
           <Row>
             <Col md={4} className='mb-3'>

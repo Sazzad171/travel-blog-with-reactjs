@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {Navbar, Container, Nav, NavDropdown, Offcanvas, Image} from 'react-bootstrap';
 
 // images
@@ -11,8 +11,11 @@ export default function Header() {
   // state
   const [scroll, setScroll] = useState(false);
 
-  // scroll position
+  let location = useLocation();
+
+  // hook
   useEffect(() => {
+    // scroll position
     window.addEventListener("scroll", () => {
       if (window.scrollY > 50) {
         setScroll(true);
@@ -21,7 +24,10 @@ export default function Header() {
         setScroll(false);
       }
     });
-  }, []);
+
+    // goto top when route change
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
     <header className={`position-fixed ${scroll ? "white-variant" : ""} `}>

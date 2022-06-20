@@ -68,7 +68,7 @@ export default function PageHeader() {
         <div className="img-wrapper position-relative">
           <img src={page.bgImage} alt="page header" />
           <div className="heading-text position-absolute d-flex w-100 h-100 align-items-center justify-content-center">
-            <h2 className='text-white pt-4 pt-md-5'>{ page.pageName }</h2>
+            <h2 className='text-white pt-5'>{ page.pageName }</h2>
           </div>
         </div>
       </Container>

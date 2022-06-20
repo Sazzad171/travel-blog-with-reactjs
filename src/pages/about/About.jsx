@@ -1,7 +1,13 @@
-import React from 'react'
+import React from 'react';
+
+// components
+import PageHeader from '../../layout/PageHeader';
 
 export default function About() {
   return (
-    <div>About</div>
+    <>
+      <PageHeader />
+      <div>About</div>
+    </>
   )
 }

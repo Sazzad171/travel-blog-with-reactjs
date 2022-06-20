@@ -1,7 +1,13 @@
-import React from 'react'
+import React from 'react';
+
+// components
+import PageHeader from '../../layout/PageHeader';
 
 export default function PlaceDetails() {
   return (
-    <div>Place-details</div>
+    <>
+      <PageHeader />
+      <div>Place-details</div>
+    </>
   )
 }

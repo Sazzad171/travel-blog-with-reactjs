@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {Col, Container, Row} from 'react-bootstrap';
 
 // images
@@ -13,9 +14,9 @@ export default function Footer() {
           <Row>
             <Col md={4} className='mb-3'>
               <div className="logo-area">
-                <a href="#fs">
+                <Link to="/">
                   <img src={logo} alt="logo" className='mb-3 w-75' />
-                </a>
+                </Link>
                 <p className="text-white">Nature lovers Bangladesh is a Bangladeshi Travel Blog.</p>
               </div>
             </Col>
@@ -24,10 +25,10 @@ export default function Footer() {
                 <h4 className="text-white mb-3">Quick Links</h4>
                 <ul>
                   <li className='mb-1'>
-                    <a href="#hg" className='text-ash'>Home</a>
+                    <Link to="/" className='text-ash'>Home</Link>
                   </li>
                   <li className='mb-1'>
-                    <a href="#hg" className='text-ash'>Contact US</a>
+                    <Link to="/contact" className='text-ash'>Contact US</Link>
                   </li>
                   <li className='mb-1'>
                     <a href="#hg" className='text-ash'>Terms & conditions</a>

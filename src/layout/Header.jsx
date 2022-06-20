@@ -40,9 +40,10 @@ export default function Header() {
             <Offcanvas.Body>
               <Nav className="ms-auto">
                 <Link to="/" className='nav-link'>Home</Link>
-                <Link to="places" className='nav-link'>Places</Link>
-                <Link to="#link" className='nav-link'>Videos</Link>
-                <Link to="#link" className='nav-link'>Contact</Link>
+                <Link to="/places" className='nav-link'>Places</Link>
+                <Link to="/videos" className='nav-link'>Videos</Link>
+                <Link to="/about" className='nav-link'>About</Link>
+                <Link to="/contact" className='nav-link'>Contact</Link>
                 <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown-expand-lg">
                   <NavDropdown.Item href="#action/3.1">Dropdown</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

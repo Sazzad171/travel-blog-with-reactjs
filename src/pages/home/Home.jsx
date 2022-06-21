@@ -225,7 +225,7 @@ export default function Home() {
 
             {/* video item */}
             <Col md={4} className='mb-3 px-md-4'>
-              <a href="#sdf">
+              <Link to="/video-details">
                 <Card className='h-100 shadow border-0'>
                   <div className="card-img-wrapper position-relative">
                     <Card.Img variant="top" src={banner1} />
@@ -239,7 +239,7 @@ export default function Home() {
                     </p>
                   </Card.Body>
                 </Card>
-              </a>
+              </Link>
             </Col>
 
             {/* video item */}

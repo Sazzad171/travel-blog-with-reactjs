@@ -22,7 +22,7 @@ export default function Footer() {
             </Col>
             <Col md={3} className='mb-3'>
               <div className="links-area">
-                <h4 className="text-white mb-3">Quick Links</h4>
+                <h4 className="text-white mb-2 mb-md-3">Quick Links</h4>
                 <ul>
                   <li className='mb-1'>
                     <Link to="/" className='text-ash'>Home</Link>
@@ -41,7 +41,7 @@ export default function Footer() {
             </Col>
             <Col md={3} className='mb-3'>
               <div className="links-area">
-                <h4 className="text-white mb-3">About Us</h4>
+                <h4 className="text-white mb-2 mb-md-3">About Us</h4>
                 <ul>
                   <li className='mb-1'>
                     <a href="#hg" className='text-ash'>Our story</a>
@@ -60,7 +60,7 @@ export default function Footer() {
             </Col>
             <Col md={2} className='mb-3'>
               <div className="links-area">
-                <h4 className="text-white mb-3">Support</h4>
+                <h4 className="text-white mb-2 mb-md-3">Support</h4>
                 <ul>
                   <li className='mb-1'>
                     <a href="#hg" className='text-ash'>Customer Support</a>

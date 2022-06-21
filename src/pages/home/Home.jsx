@@ -123,7 +123,7 @@ export default function Home() {
                       <p className='text-ash'>China</p>
                     </Col>
                     <Col xs={3}>
-                      <a href="#ds" className="btn rounded-circle"><BsArrowRightShort /></a>
+                      <Link to="/place-details" className="btn rounded-circle"><BsArrowRightShort /></Link>
                     </Col>
                   </Row>
                 </Card.Body>

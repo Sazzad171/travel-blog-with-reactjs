@@ -181,6 +181,37 @@ header.white-variant {
   }
 }
 
+// place details page
+.place-details-area {
+  .place-details-box {
+    img {
+      border-radius: 8px;
+    }
+  }
+  .travel-tips-box {
+    border-radius: 8px;
+    background: linear-gradient(to right, #f05942, #ea3248);
+    ul {
+      li {
+        color: #fff;
+        list-style-type: disclosure-closed;
+      }
+    }
+  }
+  .img-slider {
+    h4 {
+      font-weight: 700;
+    }
+    img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      padding: 0 6px;
+    }
+  }
+}
+
 // footer start
 footer {
   img {

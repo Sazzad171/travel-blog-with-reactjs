@@ -117,7 +117,7 @@ export default function Home({ places, videos }) {
               places && places.slice(0, 6).map( (place, i) => (
                 <Col md={4} className='mb-3' key={ i }>
                   <Card className='h-100 shadow border-0'>
-                    <Card.Img variant="top" src={destination} />
+                    <Card.Img variant="top" src={place.img} />
                     <Card.Body>
                       <Row className='align-items-center'>
                         <Col xs={9}>
@@ -199,7 +199,7 @@ export default function Home({ places, videos }) {
                   <Link to={`/video-details/${video.id}`}>
                     <Card className='h-100 shadow border-0'>
                       <div className="card-img-wrapper position-relative">
-                        <Card.Img variant="top" src={banner1} />
+                        <Card.Img variant="top" src={video.img} />
                         <BsPlayCircle className='play-icon text-white position-absolute' />
                         <div className="overlay position-absolute"></div>
                       </div>

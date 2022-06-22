@@ -1,5 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+// firebase
+import { db } from "./firebase/firebase";
+import { collection, onSnapshot } from 'firebase/firestore';
 
 // import components
 import Header from './layout/Header';
@@ -15,65 +19,44 @@ import Contact from './pages/contact/Contact';
 function App() {
 
   // states
-  const [places] = useState([
-    {
-      id: 1,
-      name: "One day tour 1",
-      description: "Description of this",
-      location: "Dhaka",
-      img: "assets/img/destination.jpg"
-    },
-    {
-      id: 2,
-      name: "One day tour 2",
-      description: "Description of this",
-      location: "Dhaka",
-      img: "assets/img/destination.jpg"
-    },
-    {
-      id: 3,
-      name: "One day tour 3",
-      description: "Description of this",
-      location: "Dhaka",
-      img: "assets/img/destination.jpg"
-    },
-    {
-      id: 4,
-      name: "One day tour 4",
-      description: "Description of this",
-      location: "Dhaka",
-      img: "assets/img/destination.jpg"
-    },
-    {
-      id: 5,
-      name: "One day tour 5",
-      description: "Description of this",
-      location: "Dhaka",
-      img: "assets/img/destination.jpg"
-    },
-    {
-      id: 6,
-      name: "One day tour 6",
-      description: "Description of this",
-      location: "Dhaka",
-      img: "assets/img/destination.jpg"
-    },
-    {
-      id: 7,
-      name: "One day tour 7",
-      description: "Description of this",
-      location: "Dhaka",
-      img: "assets/img/destination.jpg"
-    },
-  ]);
-  const [videos] = useState([
-    {
-      id: 1,
-      name: "Tanguar Haor",
-      location: "Sunamganj",
-      img: ''
-    }
-  ])
+  const [places, setPlaces] = useState([]);
+  const [videos, setVideos] = useState([]);
+
+  // get data from firebase
+  useEffect(() => {
+    // get places data from firebase
+    const unsub = onSnapshot(
+      collection(db, "places"),
+      (snapshot) => {
+        let placeList = [];
+        snapshot.docs.forEach((doc) => {
+          placeList.push({ id: doc.id, ...doc.data() });
+        });
+        setPlaces(placeList);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    // get videos data from firebase
+    const unsubVideo = onSnapshot(
+      collection(db, "Videos"),
+      (snapshot) => {
+        let videoList = [];
+        snapshot.docs.forEach((doc) => {
+          videoList.push({ id: doc.id, ...doc.data() });
+        });
+        setVideos(videoList);
+        console.log(videoList);
+      }
+    )
+
+    return () => {
+      unsub();
+      unsubVideo();
+    };
+  }, []);
 
   return (
     <>

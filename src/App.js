@@ -24,42 +24,42 @@ function App() {
       img: "assets/img/destination.jpg"
     },
     {
-      id: 1,
+      id: 2,
       name: "One day tour 2",
       description: "Description of this",
       location: "Dhaka",
       img: "assets/img/destination.jpg"
     },
     {
-      id: 1,
+      id: 3,
       name: "One day tour 3",
       description: "Description of this",
       location: "Dhaka",
       img: "assets/img/destination.jpg"
     },
     {
-      id: 1,
+      id: 4,
       name: "One day tour 4",
       description: "Description of this",
       location: "Dhaka",
       img: "assets/img/destination.jpg"
     },
     {
-      id: 1,
+      id: 5,
       name: "One day tour 5",
       description: "Description of this",
       location: "Dhaka",
       img: "assets/img/destination.jpg"
     },
     {
-      id: 1,
+      id: 6,
       name: "One day tour 6",
       description: "Description of this",
       location: "Dhaka",
       img: "assets/img/destination.jpg"
     },
     {
-      id: 1,
+      id: 7,
       name: "One day tour 7",
       description: "Description of this",
       location: "Dhaka",
@@ -82,9 +82,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home places={ places } videos={ videos } />} />
           <Route path="/places" element={<Places places={ places } />} />
-          <Route path="/place-details" element={<PlaceDetails />} />
+          <Route path="/place-details/:id" element={<PlaceDetails />} />
           <Route path="/videos" element={<Videos videos={ videos } />} />
-          <Route path="/video-details" element={<VideoDetails />} />
+          <Route path="/video-details/:id" element={<VideoDetails />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

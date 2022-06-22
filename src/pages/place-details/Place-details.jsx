@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useEffect } from 'react';
 import {Col, Container, Row, Card} from 'react-bootstrap';
 
 // components
@@ -31,9 +32,28 @@ export default function PlaceDetails() {
     slidesToScroll: 1
   };
 
+  // get id
+  const params = useParams();
+
+  useEffect(() => {
+    console.log(params.id);
+  }, [params])
+
   return (
     <>
       <PageHeader />
+
+      {/* page header */}
+      <section className='page-header-area'>
+        <Container fluid className='px-0'>
+          <div className="img-wrapper position-relative">
+            <img src={destination} alt="page header" />
+            <div className="heading-text position-absolute d-flex w-100 h-100 align-items-center justify-content-center">
+              <h2 className='text-white pt-5'>Page header</h2>
+            </div>
+          </div>
+        </Container>
+      </section>
       
       {/* place details start */}
       <section className="place-details-area pt-40 pb-40">

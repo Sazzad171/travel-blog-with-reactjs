@@ -24,9 +24,9 @@ export default function Videos({ videos }) {
           <Row>
             {/* video item */}
             {
-              videos && videos.slice(0, 3).map((video) => (
+              videos && videos.map((video) => (
                 <Col md={4} className='mb-3 px-md-4' key={video.id}>
-                  <Link to="/video-details">
+                  <Link to={`/video-details/${video.id}`}>
                     <Card className='h-100 shadow border-0'>
                       <div className="card-img-wrapper position-relative">
                         <Card.Img variant="top" src={banner1} />

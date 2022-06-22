@@ -125,7 +125,7 @@ export default function Home({ places, videos }) {
                           <p className='text-ash'>{ place.location }</p>
                         </Col>
                         <Col xs={3}>
-                          <Link to="/place-details" className="btn rounded-circle"><BsArrowRightShort /></Link>
+                          <Link to={`/place-details/${place.id}`} className="btn rounded-circle"><BsArrowRightShort /></Link>
                         </Col>
                       </Row>
                     </Card.Body>
@@ -196,7 +196,7 @@ export default function Home({ places, videos }) {
             {
               videos && videos.slice(0, 3).map((video) => (
                 <Col md={4} className='mb-3 px-md-4' key={video.id}>
-                  <Link to="/video-details">
+                  <Link to={`/video-details/${video.id}`}>
                     <Card className='h-100 shadow border-0'>
                       <div className="card-img-wrapper position-relative">
                         <Card.Img variant="top" src={banner1} />

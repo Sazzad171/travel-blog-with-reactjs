@@ -24,7 +24,7 @@ export default function Places({ places }) {
 
             {/* destination item */}
             {
-              places && places.slice(0, 6).map( (place, i) => (
+              places && places.map( (place, i) => (
                 <Col md={4} className='mb-3' key={ i }>
                   <Card className='h-100 shadow border-0'>
                     <Card.Img variant="top" src={destination} />
@@ -35,7 +35,7 @@ export default function Places({ places }) {
                           <p className='text-ash'>{ place.location }</p>
                         </Col>
                         <Col xs={3}>
-                          <Link to="/place-details" className="btn rounded-circle"><BsArrowRightShort /></Link>
+                          <Link to={`/place-details/${place.id}`} className="btn rounded-circle"><BsArrowRightShort /></Link>
                         </Col>
                       </Row>
                     </Card.Body>

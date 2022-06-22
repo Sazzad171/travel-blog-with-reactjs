@@ -59,10 +59,13 @@ export default function PlaceDetails() {
               <div className="travel-tips-box p-4 mb-4 mb-md-5">
                 <h4 className='text-center text-white'>Travel Tips</h4>
                 <ul className='ms-3'>
-                  <li>fasd sdf sdfa dsf</li>
-                  <li>fdsaf</li>
-                  <li>fasd sdfa saf</li>
-                  <li>fdsaf sdfds</li>
+                  <li>Do your research</li>
+                  <li>Don’t draw attention</li>
+                  <li>Make copies of important documents</li>
+                  <li>Keep your friends and family updated</li>
+                  <li>Be wary of public Wi-Fi</li>
+                  <li>Safeguard your hotel room</li>
+                  <li>Be aware of your surroundings</li>
                 </ul>
               </div>
               <div className="img-slider">

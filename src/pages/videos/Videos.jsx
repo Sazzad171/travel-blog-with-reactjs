@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {Col, Container, Row, Card} from 'react-bootstrap';
 
 // components
@@ -11,7 +12,7 @@ import banner1 from '../../assets/img/home-banner/1.jpg';
 import { BsPlayCircle } from 'react-icons/bs';
 import { FaMapMarkerAlt } from "react-icons/fa";
 
-export default function Videos() {
+export default function Videos({ videos }) {
   return (
     <>
       <PageHeader />
@@ -22,61 +23,28 @@ export default function Videos() {
           {/* place items */}
           <Row>
             {/* video item */}
-            <Col md={4} className='mb-3'>
-              <a href="#sdf">
-                <Card className='h-100 shadow border-0'>
-                  <div className="card-img-wrapper position-relative">
-                    <Card.Img variant="top" src={banner1} />
-                    <BsPlayCircle className='play-icon text-white position-absolute' />
-                    <div className="overlay position-absolute"></div>
-                  </div>
-                  <Card.Body>
-                    <h4>Tanguar Haor</h4>
-                    <p className="text-ash">
-                      <FaMapMarkerAlt className='text-orange me-1' /> Sunamganj
-                    </p>
-                  </Card.Body>
-                </Card>
-              </a>
-            </Col>
-
-            {/* video item */}
-            <Col md={4} className='mb-3'>
-              <a href="#sdf">
-                <Card className='h-100 shadow border-0'>
-                  <div className="card-img-wrapper position-relative">
-                    <Card.Img variant="top" src={banner1} />
-                    <BsPlayCircle className='play-icon text-white position-absolute' />
-                    <div className="overlay position-absolute"></div>
-                  </div>
-                  <Card.Body>
-                    <h4>Tanguar Haor</h4>
-                    <p className="text-ash">
-                      <FaMapMarkerAlt className='text-orange me-1' /> Sunamganj
-                    </p>
-                  </Card.Body>
-                </Card>
-              </a>
-            </Col>
-
-            {/* video item */}
-            <Col md={4} className='mb-3'>
-              <a href="#sdf">
-                <Card className='h-100 shadow border-0'>
-                  <div className="card-img-wrapper position-relative">
-                    <Card.Img variant="top" src={banner1} />
-                    <BsPlayCircle className='play-icon text-white position-absolute' />
-                    <div className="overlay position-absolute"></div>
-                  </div>
-                  <Card.Body>
-                    <h4>Tanguar Haor</h4>
-                    <p className="text-ash">
-                      <FaMapMarkerAlt className='text-orange me-1' /> Sunamganj
-                    </p>
-                  </Card.Body>
-                </Card>
-              </a>
-            </Col>
+            {
+              videos && videos.slice(0, 3).map((video) => (
+                <Col md={4} className='mb-3 px-md-4' key={video.id}>
+                  <Link to="/video-details">
+                    <Card className='h-100 shadow border-0'>
+                      <div className="card-img-wrapper position-relative">
+                        <Card.Img variant="top" src={banner1} />
+                        <BsPlayCircle className='play-icon text-white position-absolute' />
+                        <div className="overlay position-absolute"></div>
+                      </div>
+                      <Card.Body>
+                        <h4>{ video.name }</h4>
+                        <p className="text-ash">
+                          <FaMapMarkerAlt className='text-orange me-1' /> { video.location }
+                        </p>
+                      </Card.Body>
+                    </Card>
+                  </Link>
+                </Col>
+              ))
+            }
+            
           </Row>
         </Container>
       </section>

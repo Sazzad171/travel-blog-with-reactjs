@@ -5,8 +5,8 @@ import {Container} from 'react-bootstrap';
 // images
 import bg1 from '../assets/img/home-banner/1.jpg';
 import bg2 from '../assets/img/places/2.jpg';
-import bg3 from '../assets/img/places/2.jpg';
-import bg5 from '../assets/img/places/2.jpg';
+import bg3 from '../assets/img/places/3.jpg';
+import bg5 from '../assets/img/places/4.jpg';
 
 export default function PageHeader() {
 
@@ -31,6 +31,12 @@ export default function PageHeader() {
         setPage({
           pageName: 'All Tour Videos',
           bgImage: bg3
+        })
+        break;
+      case 'gallery':
+        setPage({
+          pageName: 'Photo Collections',
+          bgImage: bg2
         })
         break;
       case 'about':

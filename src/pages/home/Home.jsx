@@ -6,7 +6,6 @@ import {Carousel, Col, Container, Row, Card} from 'react-bootstrap';
 import banner1 from '../../assets/img/home-banner/1.jpg';
 import banner2 from '../../assets/img/home-banner/2.jpg';
 import banner3 from '../../assets/img/home-banner/3.jpg';
-import destination from '../../assets/img/destination.jpg';
 
 // icons
 import { BsArrowRightShort, BsPlayCircle } from 'react-icons/bs';
@@ -17,13 +16,13 @@ import Slider from "react-slick";
 import "../../assets/plugins/slick/slick.css"; 
 import "../../assets/plugins/slick/slick.theme.css";
 
-export default function Home({ places, videos }) {
+export default function Home({ places, videos, gallery }) {
 
   // slick slider
   const slickSettings = {
     dots: true,
     arrows: false,
-    infinite: true,
+    infinite: false,
     speed: 1500,
     autoplay: true,
     autoplaySpeed: 4000,
@@ -153,26 +152,14 @@ export default function Home({ places, videos }) {
         <Container fluid className='px-0'>
           {/* slider */}
           <Slider {...slickSettings}>
-            <div className='slider-item position-relative'>
-              <img src={destination} className='img-fluid' alt="img" />
-              <small className="place-name position-absolute bg-white text-orange">Dhaka</small>
-            </div>
-            <div className='slider-item position-relative'>
-              <img src={banner1} className='img-fluid' alt="img" />
-              <small className="place-name position-absolute bg-white text-orange">Dhaka</small>
-            </div>
-            <div className='slider-item position-relative'>
-              <img src={banner3} className='img-fluid' alt="img" />
-              <small className="place-name position-absolute bg-white text-orange">Dhaka</small>
-            </div>
-            <div className='slider-item position-relative'>
-              <img src={banner2} className='img-fluid' alt="img" />
-              <small className="place-name position-absolute bg-white text-orange">Dhaka</small>
-            </div>
-            <div className='slider-item position-relative'>
-              <img src={banner3} className='img-fluid' alt="img" />
-              <small className="place-name position-absolute bg-white text-orange">Dhaka</small>
-            </div>
+            {
+              gallery.map((galleryItem) => (
+                <div className='slider-item position-relative' key={ galleryItem.id }>
+                  <img src={ galleryItem.img } className='img-fluid' alt="img" />
+                  <small className="place-name position-absolute bg-white text-orange">{ galleryItem.location }</small>
+                </div>
+              ))
+            }
           </Slider>
         </Container>
       </section>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from "react-router-dom";
-import {Navbar, Container, Nav, NavDropdown, Offcanvas, Image} from 'react-bootstrap';
+import {Navbar, Container, Nav, Offcanvas, Image} from 'react-bootstrap';
 
 // images
 import logo from '../assets/img/logo.png';
@@ -48,13 +48,10 @@ export default function Header() {
                 <Link to="/" className='nav-link'>Home</Link>
                 <Link to="/places" className='nav-link'>Places</Link>
                 <Link to="/videos" className='nav-link'>Videos</Link>
+                <Link to="/gallery" className='nav-link'>Gallery</Link>
                 <Link to="/about" className='nav-link'>About</Link>
                 <Link to="/contact" className='nav-link'>Contact</Link>
-                <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown-expand-lg">
-                  <NavDropdown.Item href="#action/3.1">Dropdown</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                </NavDropdown>
+                <Link to="/contact" className='nav-link'>Admin</Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

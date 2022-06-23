@@ -6,3 +6,4 @@ use storage and firestore as database -> change rules for availability
 
 import firestore & storage in firebase.js file
 
+CRUD from live db

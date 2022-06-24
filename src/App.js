@@ -62,7 +62,6 @@ function App() {
           galleryList.push({ id: doc.id, ...doc.data() });
         });
         setGallery(galleryList);
-        console.log(galleryList);
       }
     );
 
@@ -80,7 +79,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home places={ places } videos={ videos } gallery={ gallery } />} />
           <Route path="/places" element={<Places places={ places } />} />
-          <Route path="/place-details/:id" element={<PlaceDetails />} />
+          <Route path="/place-details/:id" element={<PlaceDetails places={ places } />} />
           <Route path="/videos" element={<Videos videos={ videos } />} />
           <Route path="/video-details/:id" element={<VideoDetails />} />
           <Route path="/gallery" element={<Gallery />} />

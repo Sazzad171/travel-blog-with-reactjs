@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
-import { useEffect } from 'react';
 import {Col, Container, Row, Card} from 'react-bootstrap';
 
 // components
@@ -17,8 +16,12 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import Slider from "react-slick";
 import "../../assets/plugins/slick/slick.css"; 
 import "../../assets/plugins/slick/slick.theme.css";
+import { useState } from 'react';
 
-export default function PlaceDetails() {
+export default function PlaceDetails({ places }) {
+
+  // state
+  const [placeDetails, setPlaceDetails] = useState({});
 
   // slick slider
   const slickSettings = {
@@ -36,8 +39,13 @@ export default function PlaceDetails() {
   const params = useParams();
 
   useEffect(() => {
-    console.log(params.id);
-  }, [params])
+    places.map((place) => {
+      if(place.id === params.id) {
+        return (setPlaceDetails(place));
+      }
+      else return '';
+    });
+  }, [params, places]);
 
   return (
     <>
@@ -49,7 +57,7 @@ export default function PlaceDetails() {
           <div className="img-wrapper position-relative">
             <img src={destination} alt="page header" />
             <div className="heading-text position-absolute d-flex w-100 h-100 align-items-center justify-content-center">
-              <h2 className='text-white pt-5'>Page header</h2>
+              <h2 className='text-white pt-5'>{ placeDetails.name }</h2>
             </div>
           </div>
         </Container>
@@ -62,15 +70,13 @@ export default function PlaceDetails() {
             {/* left details */}
             <Col md={8} className='mb-3'>
               <div className="place-details-box">
-                <img src={destination} className='mb-3 img-fluid w-100' alt="place" />
-                <h3 className='mb-1 text-red'>Special London Tour</h3>
+                <img src={ placeDetails.img } className='mb-3 img-fluid w-100' alt="place" />
+                <h3 className='mb-1 text-red'>{ placeDetails.name }</h3>
                 <p className="text-ash mb-3">
-                  <FaMapMarkerAlt className='text-orange me-1' /> Sunamganj
+                  <FaMapMarkerAlt className='text-orange me-1' /> { placeDetails.location }
                 </p>
                 <p>
-                  Lorem ipsum dosectetur adipisicing elit, sed doLorem ipsum dolor sit amet, consectetur Nulla fringilla purus at leo dignissim congue. Mauris elementum accumsan leo vel tempo Sit amet cursus nisl aliquam. Aliquam et elit eu nunc rhoncus viverra quis at felis. Seddo Lorem ipsum dolor sit amet, consectetur Nulla fringilla purus Lorem ipsum dosectetur a dipisicing elit at leo dignissim congue.
-                  <br /><br />
-                  Lorem ipsum dosectetur adipisicing elit, sed doLorem ipsum dolor sit amet, consectetur Nulla fringilla purus at leo dignissim congue. Mauris elementum accumsan leo vel tempo Sit amet cursus nisl aliquam. Aliquam et elit eu nunc rhoncus viverra quis at felis.
+                   { placeDetails.description }
                 </p>
               </div>
             </Col>

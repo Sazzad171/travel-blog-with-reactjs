@@ -5,9 +5,6 @@ import {Col, Container, Row, Card} from 'react-bootstrap';
 // components
 import PageHeader from '../../layout/PageHeader';
 
-// images
-import destination from '../../assets/img/destination.jpg';
-
 // icons
 import { BsArrowRightShort } from 'react-icons/bs';
 
@@ -27,7 +24,7 @@ export default function Places({ places }) {
               places && places.map( (place, i) => (
                 <Col md={4} className='mb-3' key={ i }>
                   <Card className='h-100 shadow border-0'>
-                    <Card.Img variant="top" src={destination} />
+                    <Card.Img variant="top" src={ place.img } />
                     <Card.Body>
                       <Row className='align-items-center'>
                         <Col xs={9}>

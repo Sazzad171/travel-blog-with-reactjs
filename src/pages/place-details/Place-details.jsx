@@ -18,7 +18,7 @@ import "../../assets/plugins/slick/slick.css";
 import "../../assets/plugins/slick/slick.theme.css";
 import { useState } from 'react';
 
-export default function PlaceDetails({ places }) {
+export default function PlaceDetails({ places, gallery }) {
 
   // state
   const [placeDetails, setPlaceDetails] = useState({});
@@ -27,7 +27,7 @@ export default function PlaceDetails({ places }) {
   const slickSettings = {
     dots: true,
     arrows: false,
-    infinite: true,
+    infinite: false,
     speed: 1500,
     autoplay: true,
     autoplaySpeed: 4000,
@@ -97,15 +97,11 @@ export default function PlaceDetails({ places }) {
               <div className="img-slider">
                 <h4 className="text-center mb-3">Destination Images</h4>
                 <Slider {...slickSettings}>
-                  <div className="slider-item">
-                    <img src={destination} alt="slider img" />
-                  </div>
-                  <div className="slider-item">
-                    <img src={destination} alt="slider img" />
-                  </div>
-                  <div className="slider-item">
-                    <img src={destination} alt="slider img" />
-                  </div>
+                  {gallery && gallery.map((galleryItem) => (
+                    <div className="slider-item" key={ galleryItem.id }>
+                      <img src={ galleryItem.img } alt="slider img" />
+                    </div>
+                  ))}
                 </Slider>
               </div>
             </Col>
@@ -129,58 +125,25 @@ export default function PlaceDetails({ places }) {
           <Row>
 
             {/* destination item */}
-            <Col md={4} className='mb-3'>
-              <Card className='h-100 shadow border-0'>
-                <Card.Img variant="top" src={destination} />
-                <Card.Body>
-                  <Row className='align-items-center'>
-                    <Col xs={9}>
-                      <h4 className='mb-1'>Beijing, China</h4>
-                      <p className='text-ash'>China</p>
-                    </Col>
-                    <Col xs={3}>
-                      <Link to="/place-details" className="btn rounded-circle"><BsArrowRightShort /></Link>
-                    </Col>
-                  </Row>
-                </Card.Body>
-              </Card>
-            </Col>
-
-            {/* destination item */}
-            <Col md={4} className='mb-3'>
-              <Card className='h-100 shadow border-0'>
-                <Card.Img variant="top" src={destination} />
-                <Card.Body>
-                  <Row className='align-items-center'>
-                    <Col xs={9}>
-                      <h4 className='mb-1'>Beijing, China</h4>
-                      <p className='text-ash'>China</p>
-                    </Col>
-                    <Col xs={3}>
-                      <a href="#ds" className="btn rounded-circle"><BsArrowRightShort /></a>
-                    </Col>
-                  </Row>
-                </Card.Body>
-              </Card>
-            </Col>
-
-            {/* destination item */}
-            <Col md={4} className='mb-3'>
-              <Card className='h-100 shadow border-0'>
-                <Card.Img variant="top" src={destination} />
-                <Card.Body>
-                  <Row className='align-items-center'>
-                    <Col xs={9}>
-                      <h4 className='mb-1'>Beijing, China</h4>
-                      <p className='text-ash'>China</p>
-                    </Col>
-                    <Col xs={3}>
-                      <a href="#ds" className="btn rounded-circle"><BsArrowRightShort /></a>
-                    </Col>
-                  </Row>
-                </Card.Body>
-              </Card>
-            </Col>
+            {places && places.slice(0, 3).map((place) => (
+              <Col md={4} className='mb-3' key={ place.id }>
+                <Card className='h-100 shadow border-0'>
+                  <Card.Img variant="top" src={ place.img } />
+                  <Card.Body>
+                    <Row className='align-items-center'>
+                      <Col xs={9}>
+                        <h4 className='mb-1'>{ place.name }</h4>
+                        <p className='text-ash'>{ place.location }</p>
+                      </Col>
+                      <Col xs={3}>
+                        <Link to={ `/place-details/${place.id}` } className="btn rounded-circle"><BsArrowRightShort /></Link>
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+            
           </Row>
         </Container>
       </section>

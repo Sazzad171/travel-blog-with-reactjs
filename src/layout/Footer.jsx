@@ -31,10 +31,10 @@ export default function Footer() {
                     <Link to="/contact" className='text-ash'>Contact US</Link>
                   </li>
                   <li className='mb-1'>
-                    <a href="#hg" className='text-ash'>Terms & conditions</a>
+                    <Link to="/coming-soon" className='text-ash'>Terms & conditions</Link>
                   </li>
                   <li className='mb-1'>
-                    <a href="#hg" className='text-ash'>Privacy & Policy</a>
+                    <Link to="/coming-soon" className='text-ash'>Privacy & Policy</Link>
                   </li>
                 </ul>
               </div>
@@ -44,16 +44,16 @@ export default function Footer() {
                 <h4 className="text-white mb-2 mb-md-3">About Us</h4>
                 <ul>
                   <li className='mb-1'>
-                    <a href="#hg" className='text-ash'>Our story</a>
+                    <Link to="/coming-soon" className='text-ash'>Our story</Link>
                   </li>
                   <li className='mb-1'>
-                    <a href="#hg" className='text-ash'>Working with us</a>
+                    <Link to="/coming-soon" className='text-ash'>Working with us</Link>
                   </li>
                   <li className='mb-1'>
-                    <a href="#hg" className='text-ash'>Tour guide</a>
+                    <Link to="/coming-soon" className='text-ash'>Tour guide</Link>
                   </li>
                   <li className='mb-1'>
-                    <a href="#hg" className='text-ash'>Be our partner</a>
+                    <Link to="/coming-soon" className='text-ash'>Be our partner</Link>
                   </li>
                 </ul>
               </div>
@@ -63,13 +63,13 @@ export default function Footer() {
                 <h4 className="text-white mb-2 mb-md-3">Support</h4>
                 <ul>
                   <li className='mb-1'>
-                    <a href="#hg" className='text-ash'>Customer Support</a>
+                    <Link to="/coming-soon" className='text-ash'>Customer Support</Link>
                   </li>
                   <li className='mb-1'>
-                    <a href="#hg" className='text-ash'>Terms & conditions</a>
+                    <Link to="/coming-soon" className='text-ash'>Terms & conditions</Link>
                   </li>
                   <li className='mb-1'>
-                    <a href="#hg" className='text-ash'>Privacy & Policy</a>
+                    <Link to="/coming-soon" className='text-ash'>Privacy & Policy</Link>
                   </li>
                 </ul>
               </div>

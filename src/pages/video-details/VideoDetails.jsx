@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
 import {Col, Container, Row, Card} from 'react-bootstrap';
 
@@ -6,7 +6,6 @@ import {Col, Container, Row, Card} from 'react-bootstrap';
 import PageHeader from '../../layout/PageHeader';
 
 // images
-import banner1 from '../../assets/img/home-banner/1.jpg';
 import destination from '../../assets/img/destination.jpg';
 
 // icons
@@ -17,15 +16,17 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import Slider from "react-slick";
 import "../../assets/plugins/slick/slick.css"; 
 import "../../assets/plugins/slick/slick.theme.css";
-import { useEffect } from 'react';
 
-export default function VideoDetails() {
+export default function VideoDetails({ videos, gallery }) {
+
+  // state
+  const [videoDetails, setVideoDetails] = useState({});
 
   // slick slider
   const slickSettings = {
     dots: true,
     arrows: false,
-    infinite: true,
+    infinite: false,
     speed: 1500,
     autoplay: true,
     autoplaySpeed: 4000,
@@ -37,8 +38,13 @@ export default function VideoDetails() {
   const params = useParams();
 
   useEffect(() => {
-    console.log(params.id);
-  }, [params]);
+    videos.map((video) => {
+      if( video.id === params.id ) {
+        return ( setVideoDetails(video) );
+      }
+      else return '';
+    });
+  }, [params, videos]);
 
   return (
     <>
@@ -50,7 +56,7 @@ export default function VideoDetails() {
           <div className="img-wrapper position-relative">
             <img src={destination} alt="page header" />
             <div className="heading-text position-absolute d-flex w-100 h-100 align-items-center justify-content-center">
-              <h2 className='text-white pt-5'>Page header</h2>
+              <h2 className='video-details-page-header text-white text-center pt-5 w-50'>{ videoDetails.name }</h2>
             </div>
           </div>
         </Container>
@@ -63,15 +69,13 @@ export default function VideoDetails() {
             {/* left details */}
             <Col md={8}>
               <div className="place-details-box">
-              <iframe src="https://www.youtube.com/embed/aIx0-LuKRvg" className='video mb-3' title='vidoe' frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                <h3 className='mb-1 text-red'>Special London Tour</h3>
+              <iframe src={ videoDetails.link } className='video mb-3' title='vidoe' frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                <h3 className='mb-1 text-red'>{ videoDetails.name }</h3>
                 <p className="text-ash mb-3">
-                  <FaMapMarkerAlt className='text-orange me-1' /> Sunamganj
+                  <FaMapMarkerAlt className='text-orange me-1' /> { videoDetails.location }
                 </p>
                 <p>
-                  Lorem ipsum dosectetur adipisicing elit, sed doLorem ipsum dolor sit amet, consectetur Nulla fringilla purus at leo dignissim congue. Mauris elementum accumsan leo vel tempo Sit amet cursus nisl aliquam. Aliquam et elit eu nunc rhoncus viverra quis at felis. Seddo Lorem ipsum dolor sit amet, consectetur Nulla fringilla purus Lorem ipsum dosectetur a dipisicing elit at leo dignissim congue.
-                  <br /><br />
-                  Lorem ipsum dosectetur adipisicing elit, sed doLorem ipsum dolor sit amet, consectetur Nulla fringilla purus at leo dignissim congue. Mauris elementum accumsan leo vel tempo Sit amet cursus nisl aliquam. Aliquam et elit eu nunc rhoncus viverra quis at felis.
+                  { videoDetails.description }
                 </p>
               </div>
             </Col>
@@ -80,24 +84,23 @@ export default function VideoDetails() {
               <div className="travel-tips-box p-4 mb-4 mb-md-5">
                 <h4 className='text-center text-white'>Travel Tips</h4>
                 <ul className='ms-3'>
-                  <li>fasd sdf sdfa dsf</li>
-                  <li>fdsaf</li>
-                  <li>fasd sdfa saf</li>
-                  <li>fdsaf sdfds</li>
+                  <li>Do your research</li>
+                  <li>Don’t draw attention</li>
+                  <li>Make copies of important documents</li>
+                  <li>Keep your friends and family updated</li>
+                  <li>Be wary of public Wi-Fi</li>
+                  <li>Safeguard your hotel room</li>
+                  <li>Be aware of your surroundings</li>
                 </ul>
               </div>
               <div className="img-slider">
                 <h4 className="text-center mb-3">Destination Images</h4>
                 <Slider {...slickSettings}>
-                  <div className="slider-item">
-                    <img src={destination} alt="slider img" />
-                  </div>
-                  <div className="slider-item">
-                    <img src={destination} alt="slider img" />
-                  </div>
-                  <div className="slider-item">
-                    <img src={destination} alt="slider img" />
-                  </div>
+                  {gallery && gallery.map((galleryItem) => (
+                    <div className="slider-item" key={ galleryItem.id }>
+                      <img src={ galleryItem.img } alt="slider img" />
+                    </div>
+                  ))}
                 </Slider>
               </div>
             </Col>
@@ -121,61 +124,26 @@ export default function VideoDetails() {
           <Row>
 
             {/* video item */}
-            <Col md={4} className='mb-3 px-md-4'>
-              <Link to="/video-details">
-                <Card className='h-100 shadow border-0'>
-                  <div className="card-img-wrapper position-relative">
-                    <Card.Img variant="top" src={banner1} />
-                    <BsPlayCircle className='play-icon text-white position-absolute' />
-                    <div className="overlay position-absolute"></div>
-                  </div>
-                  <Card.Body>
-                    <h4>Tanguar Haor</h4>
-                    <p className="text-ash">
-                      <FaMapMarkerAlt className='text-orange me-1' /> Sunamganj
-                    </p>
-                  </Card.Body>
-                </Card>
-              </Link>
-            </Col>
+            {videos && videos.slice(0, 3).map((video) => (
+              <Col md={4} className='mb-3 px-md-4' key={ video.id }>
+                <Link to={`/video-details/${video.id}`}>
+                  <Card className='h-100 shadow border-0'>
+                    <div className="card-img-wrapper position-relative">
+                      <Card.Img variant="top" src={ video.img } />
+                      <BsPlayCircle className='play-icon text-white position-absolute' />
+                      <div className="overlay position-absolute"></div>
+                    </div>
+                    <Card.Body>
+                      <h4>{ video.name }</h4>
+                      <p className="text-ash">
+                      <FaMapMarkerAlt className='text-orange me-1' /> { video.location }
+                      </p>
+                    </Card.Body>
+                  </Card>
+                </Link>
+              </Col>
+            ))}
 
-            {/* video item */}
-            <Col md={4} className='mb-3 px-md-4'>
-              <a href="#sdf">
-                <Card className='h-100 shadow border-0'>
-                  <div className="card-img-wrapper position-relative">
-                    <Card.Img variant="top" src={banner1} />
-                    <BsPlayCircle className='play-icon text-white position-absolute' />
-                    <div className="overlay position-absolute"></div>
-                  </div>
-                  <Card.Body>
-                    <h4>Tanguar Haor</h4>
-                    <p className="text-ash">
-                      <FaMapMarkerAlt className='text-orange me-1' /> Sunamganj
-                    </p>
-                  </Card.Body>
-                </Card>
-              </a>
-            </Col>
-
-            {/* video item */}
-            <Col md={4} className='mb-3 px-md-4'>
-              <a href="#sdf">
-                <Card className='h-100 shadow border-0'>
-                  <div className="card-img-wrapper position-relative">
-                    <Card.Img variant="top" src={banner1} />
-                    <BsPlayCircle className='play-icon text-white position-absolute' />
-                    <div className="overlay position-absolute"></div>
-                  </div>
-                  <Card.Body>
-                    <h4>Tanguar Haor</h4>
-                    <p className="text-ash">
-                      <FaMapMarkerAlt className='text-orange me-1' /> Sunamganj
-                    </p>
-                  </Card.Body>
-                </Card>
-              </a>
-            </Col>
           </Row>
         </Container>
       </section>

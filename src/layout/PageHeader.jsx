@@ -51,6 +51,12 @@ export default function PageHeader() {
           bgImage: bg2
         })
         break;
+      case 'coming-soon':
+        setPage({
+          pageName: 'Welcome!',
+          bgImage: bg3
+        })
+        break;
       default:
     }
   }, []);

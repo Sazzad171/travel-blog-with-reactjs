@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
 // components
 import PageHeader from "../../layout/PageHeader"
 
-// images
-import gallery1 from '../../assets/img/home-banner/1.jpg';
-import gallery2 from '../../assets/img/places/2.jpg';
-import gallery3 from '../../assets/img/places/3.jpg';
-import gallery5 from '../../assets/img/places/4.jpg';
+export default function Index( {gallery} ) {
 
-export default function index() {
+  // state
+  const [itemsDivide, setItemsDivide] = useState('');
+
+  // image sort
+  let totalItems = gallery.length;
+  let dividedItems = Math.floor(totalItems/3);
+
+  useEffect(() => {
+    setItemsDivide(dividedItems);
+  }, [dividedItems]);
+
   return (
     <>
     <PageHeader />
@@ -19,30 +25,18 @@ export default function index() {
     <section className="gallery-photos-area py-3">
       <Container fluid>
         <Row>
-          <Col md={4}>
-            <div className="img-item mb-3">
-              <img src={ gallery1 } alt="" className="img-fluid" />
-            </div>
-            <div className="img-item mb-3">
-              <img src={ gallery2 } alt="" className="img-fluid" />
-            </div>
-          </Col>
-          <Col md={4}>
-            <div className="img-item mb-3">
-              <img src={ gallery3 } alt="" className="img-fluid" />
-            </div>
-            <div className="img-item mb-3">
-              <img src={ gallery5 } alt="" className="img-fluid" />
-            </div>
-          </Col>
-          <Col md={4}>
-            <div className="img-item mb-3">
-              <img src={ gallery5 } alt="" className="img-fluid" />
-            </div>
-            <div className="img-item mb-3">
-              <img src={ gallery1 } alt="" className="img-fluid" />
-            </div>
-          </Col>
+          {gallery && gallery.map((galleryItem) => {
+            if (itemsDivide === 2) {
+              return <Col md={4} key={ galleryItem.id }>
+                <div className="img-item position-relative mb-3">
+                  <img src={ galleryItem.img } alt="" className="img-fluid" />
+                  <small className="place-name position-absolute bg-white text-orange">{ galleryItem.location }</small>
+                </div>
+              </Col>
+            }
+            else
+            return ''
+          })}
         </Row>
       </Container>
     </section>

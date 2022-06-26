@@ -25,18 +25,14 @@ export default function Index( {gallery} ) {
     <section className="gallery-photos-area py-3">
       <Container fluid>
         <Row>
-          {gallery && gallery.map((galleryItem) => {
-            if (itemsDivide === 2) {
-              return <Col md={4} key={ galleryItem.id }>
-                <div className="img-item position-relative mb-3">
-                  <img src={ galleryItem.img } alt="" className="img-fluid" />
-                  <small className="place-name position-absolute bg-white text-orange">{ galleryItem.location }</small>
-                </div>
-              </Col>
-            }
-            else
-            return ''
-          })}
+          {gallery && gallery.map((galleryItem) => (
+            <Col md={4} key={ galleryItem.id }>
+              <div className="img-item position-relative mb-3">
+                <img src={ galleryItem.img } alt="" className="img-fluid" />
+                <small className="place-name position-absolute bg-white text-orange">{ galleryItem.location }</small>
+              </div>
+            </Col>
+          ))}
         </Row>
       </Container>
     </section>

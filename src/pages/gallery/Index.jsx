@@ -1,21 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
 // components
 import PageHeader from "../../layout/PageHeader"
 
 export default function Index( {gallery} ) {
-
-  // state
-  const [itemsDivide, setItemsDivide] = useState('');
-
-  // image sort
-  let totalItems = gallery.length;
-  let dividedItems = Math.floor(totalItems/3);
-
-  useEffect(() => {
-    setItemsDivide(dividedItems);
-  }, [dividedItems]);
 
   return (
     <>

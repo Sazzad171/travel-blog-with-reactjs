@@ -10,6 +10,8 @@ export default function Header() {
 
   // state
   const [scroll, setScroll] = useState(false);
+  const [showOffCanvas, setShowOffCanvas] = useState(false);
+  const [isMobile] = useState(window.innerWidth < 992);
 
   let location = useLocation();
 
@@ -29,6 +31,11 @@ export default function Header() {
     window.scrollTo(0, 0);
   }, [location]);
 
+  // hide offCanvas on click link
+  const toggleOffCanvas = () => {
+    setShowOffCanvas( (showOffCanvas) => !showOffCanvas );
+  }
+
   return (
     <header className={`position-fixed ${scroll ? "white-variant" : ""} `}>
       <Navbar expand="lg" variant="dark">
@@ -36,8 +43,9 @@ export default function Header() {
           <Link to="/" className='navbar-brand'>
             <Image src={logo} className='logo' />
           </Link>
-          <Navbar.Toggle aria-controls="offcanvasNavbar-expand-lg" />
-          <Navbar.Offcanvas id="offcanvasNavbar-expand-lg" placement="end">
+          <Navbar.Toggle aria-controls="offcanvasNavbar-expand-lg" onClick={toggleOffCanvas} />
+          <Navbar.Offcanvas id="offcanvasNavbar-expand-lg" placement="end"
+            show={ isMobile ? showOffCanvas : '' } onHide={toggleOffCanvas}>
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel-expand-lg">
                 Nature Lovers BD
@@ -45,12 +53,12 @@ export default function Header() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="ms-auto">
-                <Link to="/" className='nav-link'>Home</Link>
-                <Link to="/places" className='nav-link'>Places</Link>
-                <Link to="/videos" className='nav-link'>Videos</Link>
-                <Link to="/gallery" className='nav-link'>Gallery</Link>
-                <Link to="/about" className='nav-link'>About</Link>
-                <Link to="/contact" className='nav-link'>Contact</Link>
+                <Link to="/" className='nav-link' onClick={toggleOffCanvas}>Home</Link>
+                <Link to="/places" className='nav-link' onClick={toggleOffCanvas}>Places</Link>
+                <Link to="/videos" className='nav-link' onClick={toggleOffCanvas}>Videos</Link>
+                <Link to="/gallery" className='nav-link' onClick={toggleOffCanvas}>Gallery</Link>
+                <Link to="/about" className='nav-link' onClick={toggleOffCanvas}>About</Link>
+                <Link to="/contact" className='nav-link' onClick={toggleOffCanvas}>Contact</Link>
                 <Link to="/contact" className='nav-link'>Admin</Link>
               </Nav>
             </Offcanvas.Body>

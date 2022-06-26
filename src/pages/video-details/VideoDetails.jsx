@@ -26,7 +26,7 @@ export default function VideoDetails({ videos, gallery }) {
   const slickSettings = {
     dots: true,
     arrows: false,
-    infinite: false,
+    infinite: true,
     speed: 1500,
     autoplay: true,
     autoplaySpeed: 4000,

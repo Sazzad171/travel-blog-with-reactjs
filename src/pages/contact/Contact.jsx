@@ -15,7 +15,7 @@ export default function Contact() {
       {/* get in touch start */}
       <section className="get-in-touch-area pt-60 pb-60">
         <Container>
-          <Row>
+          <Row className='align-items-center'>
             <Col md={7} className='mb-3'>
               <div className="details-area mb-3">
                 <h6 className="text-orange text-uppercase">Get in touch</h6>

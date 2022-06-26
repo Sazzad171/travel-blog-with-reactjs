@@ -79,6 +79,12 @@
   .video-details-page-header {
     width: 80% !important;
   }
+
+  // contact page
+  .get-in-touch-area,
+  .contact-medium-area {
+    padding: 30px 0;
+  }
 }
 
 @media (min-width: 992px) {

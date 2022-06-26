@@ -5,9 +5,6 @@ import {Col, Container, Row, Card} from 'react-bootstrap';
 // components
 import PageHeader from '../../layout/PageHeader';
 
-// images
-import banner1 from '../../assets/img/home-banner/1.jpg';
-
 // icons
 import { BsPlayCircle } from 'react-icons/bs';
 import { FaMapMarkerAlt } from "react-icons/fa";
@@ -29,7 +26,7 @@ export default function Videos({ videos }) {
                   <Link to={`/video-details/${video.id}`}>
                     <Card className='h-100 shadow border-0'>
                       <div className="card-img-wrapper position-relative">
-                        <Card.Img variant="top" src={banner1} />
+                        <Card.Img variant="top" src={ video.img } />
                         <BsPlayCircle className='play-icon text-white position-absolute' />
                         <div className="overlay position-absolute"></div>
                       </div>

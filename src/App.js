@@ -16,6 +16,7 @@ import VideoDetails from './pages/video-details/VideoDetails';
 import Gallery from './pages/gallery/Index';
 import About from './pages/about/About';
 import Contact from './pages/contact/Contact';
+import ComingSoon from './pages/coming-soon/ComingSoon';
 
 function App() {
 
@@ -62,7 +63,6 @@ function App() {
           galleryList.push({ id: doc.id, ...doc.data() });
         });
         setGallery(galleryList);
-        console.log(galleryList);
       }
     );
 
@@ -80,12 +80,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Home places={ places } videos={ videos } gallery={ gallery } />} />
           <Route path="/places" element={<Places places={ places } />} />
-          <Route path="/place-details/:id" element={<PlaceDetails />} />
+          <Route path="/place-details/:id" element={<PlaceDetails places={ places } gallery={ gallery } />} />
           <Route path="/videos" element={<Videos videos={ videos } />} />
-          <Route path="/video-details/:id" element={<VideoDetails />} />
-          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/video-details/:id" element={<VideoDetails videos={ videos } gallery={ gallery } />} />
+          <Route path="/gallery" element={<Gallery gallery={ gallery } />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/coming-soon" element={<ComingSoon />} />
         </Routes>
       </main>
       <Footer />

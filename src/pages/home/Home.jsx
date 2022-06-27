@@ -57,7 +57,7 @@ export default function Home({ places, videos, gallery }) {
                 <div className="overlay"></div>
               </div>
               <Carousel.Caption>
-                <h1 className='text-white mb-30'>Travel To The Beautiful Place</h1>
+                <h1 className='text-white mb-30'>Travel To The Beautiful Places</h1>
                 <p className='mb-40'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                   <br /> Lorem Ipsum has been the industry's standard .
                 </p>

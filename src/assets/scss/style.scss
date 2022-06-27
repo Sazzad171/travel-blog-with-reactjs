@@ -129,10 +129,17 @@ header.white-variant {
     }
     .place-name {
       padding: 2px 14px;
-      bottom: 16px;
+      bottom: -50px;
+      visibility: hidden;
       left: 16px;
       border-radius: 4px;
       font-weight: 600;
+    }
+  }
+  .slider-item:hover {
+    .place-name{
+      bottom: 14px;
+      visibility: visible;
     }
   }
 }
@@ -219,15 +226,25 @@ header.white-variant {
 
 // gallery photos page start
 .gallery-photos-area {
+  .img-item {
+    overflow: hidden;
+  }
   img {
     border-radius: 8px;
   }
   .place-name {
     padding: 2px 14px;
-    bottom: 16px;
+    bottom: -50px;
     left: 16px;
+    visibility: hidden;
     border-radius: 4px;
     font-weight: 600;
+  }
+  .img-item:hover {
+    .place-name {
+      bottom: 16px;
+      visibility: visible;
+    }
   }
 }
 

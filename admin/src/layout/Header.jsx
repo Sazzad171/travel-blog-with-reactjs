@@ -1,6 +1,5 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import {Navbar, Container, Nav, Offcanvas, Image} from 'react-bootstrap';
 
 // images
@@ -29,7 +28,7 @@ export default function Header() {
     <header className="white-variant">
       <Navbar expand="lg" variant="dark">
         <Container>
-          <Link to="/" className='navbar-brand'>
+          <Link to="" className='navbar-brand'>
             <Image src={logo} className='logo' />
           </Link>
           <Navbar.Toggle aria-controls="offcanvasNavbar-expand-lg" onClick={toggleOffCanvas} />
@@ -42,13 +41,9 @@ export default function Header() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="ms-auto">
-                <Link to="/" className='nav-link' onClick={toggleOffCanvas}>Home</Link>
-                <Link to="/places" className='nav-link' onClick={toggleOffCanvas}>Places</Link>
-                <Link to="/videos" className='nav-link' onClick={toggleOffCanvas}>Videos</Link>
-                <Link to="/gallery" className='nav-link' onClick={toggleOffCanvas}>Gallery</Link>
-                <Link to="/about" className='nav-link' onClick={toggleOffCanvas}>About</Link>
-                <Link to="/contact" className='nav-link' onClick={toggleOffCanvas}>Contact</Link>
-                <Link to="/contact" className='nav-link'>Admin</Link>
+                <a href="#fd" className='nav-link' onClick={toggleOffCanvas}>Hello, Sazzad</a>
+                <Link to="" className='nav-link' onClick={toggleOffCanvas}>Logout</Link>
+                <a href="https://nature-lovers-bd.netlify.app" className='nav-link' target="_blank" rel='noreferrer' onClick={toggleOffCanvas}>Goto Site</a>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

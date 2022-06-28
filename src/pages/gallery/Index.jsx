@@ -13,7 +13,7 @@ export default function Index( {gallery} ) {
     {/* gallery photos start */}
     <section className="gallery-photos-area py-3">
       <Container fluid>
-        <Row>
+        <Row data-masonry='{"percentPosition": true }'>
           {gallery && gallery.map((galleryItem) => (
             <Col md={4} key={ galleryItem.id }>
               <div className="img-item position-relative mb-3">

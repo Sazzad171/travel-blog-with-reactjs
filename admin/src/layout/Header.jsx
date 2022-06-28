@@ -9,7 +9,6 @@ import logo from '../assets/img/logo.png';
 export default function Header() {
 
   // state
-  const [scroll, setScroll] = useState(false);
   const [showOffCanvas, setShowOffCanvas] = useState(false);
   const [isMobile] = useState(window.innerWidth < 992);
 
@@ -17,16 +16,6 @@ export default function Header() {
 
   // hook
   useEffect(() => {
-    // scroll position
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        setScroll(true);
-      }
-      else {
-        setScroll(false);
-      }
-    });
-
     // goto top when route change
     window.scrollTo(0, 0);
   }, [location]);
@@ -37,7 +26,7 @@ export default function Header() {
   }
 
   return (
-    <header className={`position-fixed ${scroll ? "white-variant" : ""} `}>
+    <header className="white-variant">
       <Navbar expand="lg" variant="dark">
         <Container>
           <Link to="/" className='navbar-brand'>

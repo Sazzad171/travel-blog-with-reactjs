@@ -1,5 +1,8 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+
+// responsive masonry
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 
 // components
 import PageHeader from "../../layout/PageHeader"
@@ -12,17 +15,17 @@ export default function Index( {gallery} ) {
 
     {/* gallery photos start */}
     <section className="gallery-photos-area py-3">
-      <Container fluid>
-        <Row data-masonry='{"percentPosition": true }'>
-          {gallery && gallery.map((galleryItem) => (
-            <Col md={4} key={ galleryItem.id }>
-              <div className="img-item position-relative mb-3">
+      <Container>
+        <ResponsiveMasonry columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}>
+          <Masonry>
+            {gallery && gallery.map((galleryItem) => (
+              <div className="img-item position-relative mb-3 px-2" key={galleryItem.id}>
                 <img src={ galleryItem.img } alt="" className="img-fluid" />
                 <small className="place-name position-absolute bg-white text-orange">{ galleryItem.location }</small>
               </div>
-            </Col>
-          ))}
-        </Row>
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
       </Container>
     </section>
     {/* gallery photos end */}

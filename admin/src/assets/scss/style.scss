@@ -41,6 +41,12 @@ header.white-variant {
   background: linear-gradient(to right, $orange, $red);
 }
 
+main {
+  min-height: calc(100vh - 150px);
+  display: flex;
+  align-items: center;
+}
+
 // left menu
 .left-menu {
   .list-group-item {

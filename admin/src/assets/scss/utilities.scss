@@ -143,6 +143,7 @@ label {
 	cursor: pointer;
 	font-size: 16px;
 	font-weight: 400;
+	margin-bottom: 0 !important;
 }
 .form-control {
 	padding: 10px 18px;
@@ -174,7 +175,7 @@ label {
 .btn {
 	background: $red none repeat scroll 0 0;
 	border: medium none;
-	border-radius: 4px;
+	border-radius: 10px;
 	color: $white;
 	cursor: pointer;
 	display: inline-block;

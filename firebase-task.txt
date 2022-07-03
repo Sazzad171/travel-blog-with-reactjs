@@ -7,3 +7,8 @@ use storage and firestore as database -> change rules for availability
 import firestore & storage in firebase.js file
 
 CRUD from live db
+
+auth
+-----
+use auth with any(mail/fb/other)
+use signup, signin, logout builtin function

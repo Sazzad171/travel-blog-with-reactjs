@@ -1,9 +1,0 @@
-npm i firebase
-
-create new project on firebase also create app
-
-use storage and firestore as database -> change rules for availability
-
-import firestore & storage in firebase.js file
-
-CRUD from live db

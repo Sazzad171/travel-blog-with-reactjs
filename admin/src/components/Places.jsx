@@ -1,20 +1,21 @@
 import React from 'react';
+
 // bootstarp
 import { Container, Row } from "react-bootstrap";
 
 // components
-import AdminLeft from './AdminLeft';
-import AdminRight from './AdminRight';
+import LeftSidebar from './LeftSidebar';
+import Index from './dashboard/Index';
 
-export default function InsideAdmin() {
+export default function Places() {
   return (
     <Container>
       <Row>
         {/* left side */}
-        <AdminLeft />
+        <LeftSidebar />
 
         {/* right side */}
-        <AdminRight />
+        <Index />
       </Row>
     </Container>
   )

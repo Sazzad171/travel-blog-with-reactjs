@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // bootstrap
 import { Col, Container, Row, Form, Card } from "react-bootstrap";
 
@@ -23,6 +24,10 @@ export default function Login() {
 
                 <button className="btn btn-success disabled w-100" type='submit'>Submit</button>
               </Form>
+
+              <p className='mt-4'>
+                <Link to="/signup" className='text-primary'>Don't have Account? <b>Signup here</b></Link>
+              </p>
             </Card.Body>
           </Card>
         </Col>

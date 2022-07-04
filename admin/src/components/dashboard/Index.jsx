@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Table, Form } from "react-bootstrap";
 
-export default function AdminRight() {
+export default function Index() {
   return (
     <Col md={9}>
       <div className="right-area px-4 py-3">

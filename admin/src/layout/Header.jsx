@@ -41,8 +41,10 @@ export default function Header() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="ms-auto">
-                <a href="#fd" className='nav-link' onClick={toggleOffCanvas}>Hello, Sazzad</a>
-                <Link to="" className='nav-link' onClick={toggleOffCanvas}>Logout</Link>
+                <span className='nav-link' onClick={toggleOffCanvas}>Hello, Sazzad</span>
+                <Link to="/login" className='nav-link' onClick={toggleOffCanvas}>Login</Link>
+                <Link to="/Signup" className='nav-link' onClick={toggleOffCanvas}>Signup</Link>
+                <Link to="/login" className='nav-link' onClick={toggleOffCanvas}>Logout</Link>
                 <a href="https://nature-lovers-bd.netlify.app" className='nav-link' target="_blank" rel='noreferrer' onClick={toggleOffCanvas}>Goto Site</a>
               </Nav>
             </Offcanvas.Body>

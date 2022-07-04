@@ -12,67 +12,61 @@ export default function LeftSideBar() {
     {
       id: 1,
       link: '/dashboard',
-      activeStatus: true,
-      name: "Dashboard"
+      activeStatus: false,
+      name: "Dashboard",
+      icon: <BiHomeAlt className='me-2' />
     },
     {
       id: 2,
       link: '/places',
       activeStatus: false,
-      name: "Places"
+      name: "Places",
+      icon: <BiBeenHere className='me-2' />
     },
     {
       id: 3,
       link: '/videos',
       activeStatus: false,
-      name: "Videos"
+      name: "Videos",
+      icon: <BiMoviePlay className='me-2' />
     },
     {
       id: 4,
       link: '/gallery',
       activeStatus: false,
-      name: "Gallery"
+      name: "Gallery",
+      icon: <BiImageAlt className='me-2' />
     },
     {
       id: 5,
       link: '/',
       activeStatus: false,
-      name: "Logout"
+      name: "Logout",
+      icon: <BiLogOut className='me-2' />
     }
-  ])
+  ]);
+
+  // handle active status
+  const handleActiveStatus = (id) => {
+    setMenuItem(
+      menuItem.map((item => 
+        item.id === id ? {...item, activeStatus: true} : item
+      ))
+    );
+  }
 
   return (
     <Col md={3} className='mb-md-0 mb-3'>
       <ListGroup className="left-menu">
 
         {menuItem && menuItem.map(item => (
-          <ListGroup.Item className={ item.activeStatus ? "active" : "" } key={ item.id }>
+          <ListGroup.Item className={ item.activeStatus ? "active" : "" } key={ item.id } 
+            onClick={() => handleActiveStatus(item.id)} >
             <Link to={ item.link }>
-              <BiHomeAlt className="me-2" /> { item.name }
+              {item.icon} { item.name }
             </Link>
           </ListGroup.Item>
         ))}
-
-      <ListGroup.Item>
-          <Link to="/places">
-            <BiBeenHere className="me-2" /> Places
-          </Link>
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <Link to="/videos">
-            <BiMoviePlay className="me-2" /> Videos
-          </Link>
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <Link to="/gallery">
-            <BiImageAlt className="me-2" /> Gallery
-          </Link>
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <Link to="/">
-            <BiLogOut className="me-2" /> Logout
-          </Link>
-        </ListGroup.Item>
         
       </ListGroup>
     </Col>

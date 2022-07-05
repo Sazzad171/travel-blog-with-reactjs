@@ -2,16 +2,49 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 // boostrap
 import { Col, Container, Row, Form, Card } from "react-bootstrap";
+// import authContext
+import { useAuth } from '../context/AuthContext';
 
 export default function Signup() {
 
   // state
-  const [name, setName] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
+
+  // call signup from authContext
+  const { signup } = useAuth();
+
 
   // submit signup form
-  const submitSignupForm = () => {
+  async function submitSignupForm(e) {
+    e.preventDefault();
 
+    // check match password
+    if (password !== confirmPassword) {
+      return setError("Password doesn't match!");
+    }
+    else {
+      setError();
+    }
+
+    // submit to firebase
+    try {
+      setLoading(true);
+      await signup(email, password, name);
+      setLoading(false);
+    }
+    catch (err) {
+      console.log(err);
+      setError("Failed to create account");
+      setLoading(false);
+    }
   }
+
 
   return (
     <Container>
@@ -23,25 +56,27 @@ export default function Signup() {
               <Form onSubmit={ submitSignupForm }>
                 <Form.Group className="mb-3" controlId="name">
                   <Form.Label>Your Name</Form.Label>
-                  <Form.Control type="text" placeholder="Enter Name" />
+                  <Form.Control type="text" value={name} onChange={(e) => {setName(e.target.value)}} placeholder="Enter Name" required />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="email">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
+                  <Form.Control type="email" value={email} onChange={(e) => {setEmail(e.target.value)}} placeholder="Enter email" required />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="password">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Enter password" />
+                  <Form.Control type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Enter password" required />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="confirmPassword">
                   <Form.Label>Confirm Password</Form.Label>
-                  <Form.Control type="password" placeholder="Confirm password" />
+                  <Form.Control type="password" value={confirmPassword} onChange={(e) => {setConfirmPassword(e.target.value)}} placeholder="Confirm password" required />
                 </Form.Group>
 
-                <button className="btn btn-success disabled w-100" type='submit'>Submit</button>
+                <h5 className="text-danger">{error}</h5>
+
+                <button className={`btn bg-success text-white w-100 ${loading && "disabled"}`} type='submit'>Submit</button>
               </Form>
 
               <p className='mt-4'>

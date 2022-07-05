@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {Navbar, Container, Nav, Offcanvas, Image} from 'react-bootstrap';
+// load auth file
+import { useAuth } from '../context/AuthContext';
 
 // images
 import logo from '../assets/img/logo.png';
@@ -24,6 +26,10 @@ export default function Header() {
     setShowOffCanvas( (showOffCanvas) => !showOffCanvas );
   }
 
+
+  // define context variable which i need
+  const { currentUser, logout } = useAuth();
+
   return (
     <header className="white-variant">
       <Navbar expand="lg" variant="dark">
@@ -41,10 +47,19 @@ export default function Header() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="ms-auto">
-                <span className='nav-link' onClick={toggleOffCanvas}>Hello, Sazzad</span>
-                <Link to="/login" className='nav-link' onClick={toggleOffCanvas}>Login</Link>
-                <Link to="/Signup" className='nav-link' onClick={toggleOffCanvas}>Signup</Link>
-                <Link to="/login" className='nav-link' onClick={toggleOffCanvas}>Logout</Link>
+                {
+                  currentUser ? (
+                    <>
+                      <span className='nav-link' onClick={toggleOffCanvas}>Hello, { currentUser && currentUser.displayName }</span>
+                      <Link to="/login" className='nav-link' onClick={() => { toggleOffCanvas(); logout(); }}>Logout</Link>
+                    </>
+                  ) : (
+                    <>
+                      <Link to="/login" className='nav-link' onClick={toggleOffCanvas}>Login</Link>
+                      <Link to="/Signup" className='nav-link' onClick={toggleOffCanvas}>Signup</Link>
+                    </>
+                  )
+                }
                 <a href="https://nature-lovers-bd.netlify.app" className='nav-link' target="_blank" rel='noreferrer' onClick={toggleOffCanvas}>Goto Site</a>
               </Nav>
             </Offcanvas.Body>

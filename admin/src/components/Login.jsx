@@ -1,9 +1,43 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React,{ useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 // bootstrap
 import { Col, Container, Row, Form, Card } from "react-bootstrap";
+import { useAuth } from '../context/AuthContext';
 
 export default function Login() {
+
+  // state
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  // useNavigate
+  const navigate = useNavigate();
+
+
+
+  // define context value
+  const { login } = useAuth();
+
+
+  // submit login form
+  async function loginSubmit(e) {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+      await login(email, password);
+      setLoading(false);
+      navigate("/dashboard", {replace: true});
+    }
+    catch (err) {
+      console.log(err);
+      setError("Failed to login");
+      setLoading(false);
+    }
+  }
+
   return (
     <Container>
       <Row className='justify-content-center'>
@@ -11,18 +45,20 @@ export default function Login() {
           <Card className='shadow-sm'>
             <Card.Body className='p-md-4'>
               <h4 className="text-center mb-4">Login to Nature Lovers BD</h4>
-              <Form>
+              <Form onSubmit={loginSubmit}>
                 <Form.Group className="mb-3" controlId="email">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
+                  <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter email" required />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="password">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Enter password" />
+                  <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" required />
                 </Form.Group>
 
-                <button className="btn btn-success disabled w-100" type='submit'>Submit</button>
+                <h5 className="text-danger">{error}</h5>
+
+                <button className={`btn bg-success w-100 ${loading ? "disabled": ''}`} type='submit'>Submit</button>
               </Form>
 
               <p className='mt-4'>

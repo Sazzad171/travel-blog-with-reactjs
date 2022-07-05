@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // boostrap
 import { Col, Container, Row, Form, Card } from "react-bootstrap";
 // import authContext
@@ -19,6 +19,9 @@ export default function Signup() {
   // call signup from authContext
   const { signup } = useAuth();
 
+  // usenavigate initialize
+  let navigate = useNavigate();
+
 
   // submit signup form
   async function submitSignupForm(e) {
@@ -37,6 +40,7 @@ export default function Signup() {
       setLoading(true);
       await signup(email, password, name);
       setLoading(false);
+      navigate("/dashboard", { replace: true });
     }
     catch (err) {
       console.log(err);

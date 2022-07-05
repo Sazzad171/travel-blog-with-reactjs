@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 // boostrap
 import { Col, Container, Row, Form, Card } from "react-bootstrap";
 
 export default function Signup() {
+
+  // state
+  const [name, setName] = useState();
+
+  // submit signup form
+  const submitSignupForm = () => {
+
+  }
+
   return (
     <Container>
       <Row className='justify-content-center'>
@@ -11,7 +20,7 @@ export default function Signup() {
           <Card className='shadow-sm'>
             <Card.Body className='p-md-4'>
               <h4 className="text-center mb-4">Signup to Nature Lovers BD</h4>
-              <Form>
+              <Form onSubmit={ submitSignupForm }>
                 <Form.Group className="mb-3" controlId="name">
                   <Form.Label>Your Name</Form.Label>
                   <Form.Control type="text" placeholder="Enter Name" />

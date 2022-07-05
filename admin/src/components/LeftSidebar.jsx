@@ -8,11 +8,11 @@ import { BiHomeAlt, BiBeenHere, BiMoviePlay, BiImageAlt, BiLogOut } from 'react-
 export default function LeftSideBar() {
 
   // state
-  const [menuItem, setMenuItem] = useState([
+  const [menuItem] = useState([
     {
       id: 1,
       link: '/dashboard',
-      activeStatus: false,
+      activeStatus: true,
       name: "Dashboard",
       icon: <BiHomeAlt className='me-2' />
     },
@@ -46,22 +46,16 @@ export default function LeftSideBar() {
     }
   ]);
 
-  // handle active status
-  const handleActiveStatus = (id) => {
-    setMenuItem(
-      menuItem.map((item => 
-        item.id === id ? {...item, activeStatus: true} : item
-      ))
-    );
-  }
+  // current link
+  let currentUrlLast = window.location.href.split("/").pop();
+  let currentUrlLastPart = currentUrlLast.charAt(0).toUpperCase() + currentUrlLast.slice(1);
 
   return (
     <Col md={3} className='mb-md-0 mb-3'>
       <ListGroup className="left-menu">
 
         {menuItem && menuItem.map(item => (
-          <ListGroup.Item className={ item.activeStatus ? "active" : "" } key={ item.id } 
-            onClick={() => handleActiveStatus(item.id)} >
+          <ListGroup.Item className={ item.name === currentUrlLastPart ? "active" : "" } key={ item.id } >
             <Link to={ item.link }>
               {item.icon} { item.name }
             </Link>

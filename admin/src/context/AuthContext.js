@@ -6,7 +6,7 @@ import { getAuth, createUserWithEmailAndPassword, updateProfile,
 const AuthContext = createContext();
 
 // useAuth for default get auth
-export function useauth(){
+export function useAuth(){
   return useContext(AuthContext);
 }
 
@@ -20,7 +20,7 @@ export function AuthProvider({ children }) {
 
   // state changed trigger
   useEffect(() => {
-    const auth = useauth();
+    const auth = getAuth();
     const unsub = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       setLoading(false);

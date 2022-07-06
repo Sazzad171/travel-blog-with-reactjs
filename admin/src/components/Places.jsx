@@ -5,9 +5,9 @@ import { Container, Row } from "react-bootstrap";
 
 // components
 import LeftSidebar from './LeftSidebar';
-import Index from './dashboard/Index';
+import Index from './places/Index';
 
-export default function Places() {
+export default function Places({ places }) {
   return (
     <Container>
       <Row>
@@ -15,7 +15,7 @@ export default function Places() {
         <LeftSidebar />
 
         {/* right side */}
-        <Index />
+        <Index places={ places } />
       </Row>
     </Container>
   )

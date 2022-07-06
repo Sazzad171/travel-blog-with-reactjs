@@ -55,8 +55,9 @@ export default function Header() {
                     </>
                   ) : (
                     <>
+                      <Link to="/dashboard" className='nav-link' onClick={toggleOffCanvas}>Dashboard</Link>
                       <Link to="/login" className='nav-link' onClick={toggleOffCanvas}>Login</Link>
-                      <Link to="/Signup" className='nav-link' onClick={toggleOffCanvas}>Signup</Link>
+                      <Link to="/signup" className='nav-link' onClick={toggleOffCanvas}>Signup</Link>
                     </>
                   )
                 }

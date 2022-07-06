@@ -1,5 +1,5 @@
 import React,{ useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 // bootstrap
 import { Col, Container, Row, Form, Card } from "react-bootstrap";
 import { useAuth } from '../context/AuthContext';
@@ -18,7 +18,7 @@ export default function Login() {
 
 
   // define context value
-  const { login } = useAuth();
+  const { login, currentUser } = useAuth();
 
 
   // submit login form
@@ -38,7 +38,7 @@ export default function Login() {
     }
   }
 
-  return (
+  return !currentUser ? (
     <Container>
       <Row className='justify-content-center'>
         <Col md={5}>
@@ -69,5 +69,7 @@ export default function Login() {
         </Col>
       </Row>
     </Container>
+  ) : (
+    <Navigate to="/dashboard" />
   )
 }

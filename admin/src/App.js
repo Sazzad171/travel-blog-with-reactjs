@@ -10,7 +10,6 @@ import { AuthProvider } from "./context/AuthContext";
 
 // private and public route imoprt
 import PrivateRoute from "./components/route/PrivateRoute";
-import PublicRoute from "./components/route/PrivateRoute";
 
 // import components
 import Header from './layout/Header';
@@ -31,13 +30,23 @@ function App() {
         <Header />
         <main className="pt-60 pb-60">
           <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/places" element={<Places />} />
-            <Route path="/videos" element={<Videos />} />
-            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/" exact element={<Login />} />
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+
+            {/* public route */}
+            {/* <Route path="/*" element={<PublicRoute />}>
+              <Route path="login" element={<Login />} />
+              <Route path="signup" element={<Signup />} />
+            </Route> */}
+
+            {/* private route */}
+            <Route path="/*" element={<PrivateRoute />}>
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="places" element={<Places />} />
+              <Route path="videos" element={<Videos />} />
+              <Route path="gallery" element={<Gallery />} />
+            </Route>
           </Routes>
         </main>
         <Footer />

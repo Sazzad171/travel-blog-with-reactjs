@@ -8,6 +8,10 @@ import { Routes, Route } from "react-router-dom";
 // import context
 import { AuthProvider } from "./context/AuthContext";
 
+// private and public route imoprt
+import PrivateRoute from "./components/route/PrivateRoute";
+import PublicRoute from "./components/route/PrivateRoute";
+
 // import components
 import Header from './layout/Header';
 import Footer from './layout/Footer';
@@ -20,10 +24,7 @@ import Gallery from "./components/Gallery";
 
 
 function App() {
-
-  // states
   
-
   return (
     <>
       <AuthProvider>

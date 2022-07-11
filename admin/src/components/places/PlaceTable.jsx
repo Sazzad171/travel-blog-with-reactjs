@@ -1,6 +1,9 @@
 import React from 'react';
 import { Table } from "react-bootstrap";
 
+// icons
+import { AiFillEdit, AiOutlineDelete } from 'react-icons/ai';
+
 export default function PlaceTable({ places }) {
   return (
     <Table striped bordered hover responsive>
@@ -22,7 +25,10 @@ export default function PlaceTable({ places }) {
             <td>{ place.location }</td>
             <td><img src={ place.img } alt="place img" width="100" height="auto" /></td>
             <td>{ place.description.substring(0, 20) }</td>
-            <td><span className="text-danger">Delete</span></td>
+            <td>
+              <AiFillEdit className='text-warning me-2' />
+              <AiOutlineDelete className='text-danger' />
+            </td>
           </tr>
         )) }
       </tbody>

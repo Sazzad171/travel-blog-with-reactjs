@@ -5,9 +5,9 @@ import { Container, Row } from "react-bootstrap";
 
 // components
 import LeftSidebar from './LeftSidebar';
-import Index from './dashboard/Index';
+import Index from './gallery/Index';
 
-export default function Gallery() {
+export default function Gallery({ gallery }) {
   return (
     <Container>
       <Row>
@@ -15,7 +15,7 @@ export default function Gallery() {
         <LeftSidebar />
 
         {/* right side */}
-        <Index />
+        <Index gallery={ gallery } />
       </Row>
     </Container>
   )

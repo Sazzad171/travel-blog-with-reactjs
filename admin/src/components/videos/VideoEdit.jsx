@@ -1,17 +1,17 @@
 import React from 'react';
 import { Form, Modal, Button } from "react-bootstrap";
 
-export default function PlaceEdit({ editPlaceModal, setEditPlaceModal }) {
+export default function VideoEdit({ editVideoModal, setEditVideoModal }) {
 
   // close modal
   const handleClose = () => {
-    setEditPlaceModal(false);
+    setEditVideoModal(false);
   }
 
   return (
-  <Modal show={editPlaceModal} onHide={handleClose}>
+  <Modal show={editVideoModal} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Add new place</Modal.Title>
+        <Modal.Title>Edit video info</Modal.Title>
       </Modal.Header>
       <div className="modal-body">
         <Form>
@@ -27,6 +27,11 @@ export default function PlaceEdit({ editPlaceModal, setEditPlaceModal }) {
 
           <Form.Group className="mb-3" controlId="description">
             <Form.Label>Place Description</Form.Label>
+            <Form.Control type="text" placeholder="Enter place description" />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="description">
+            <Form.Label>Place link</Form.Label>
             <Form.Control type="text" placeholder="Enter place description" />
           </Form.Group>
 

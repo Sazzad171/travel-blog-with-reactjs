@@ -5,9 +5,9 @@ import { Container, Row } from "react-bootstrap";
 
 // components
 import LeftSidebar from './LeftSidebar';
-import Index from './dashboard/Index';
+import Index from './videos/Index';
 
-export default function Videos() {
+export default function Videos({ videos }) {
   return (
     <Container>
       <Row>
@@ -15,7 +15,7 @@ export default function Videos() {
         <LeftSidebar />
 
         {/* right side */}
-        <Index />
+        <Index videos={ videos } />
       </Row>
     </Container>
   )

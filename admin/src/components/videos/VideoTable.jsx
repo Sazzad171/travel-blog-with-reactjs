@@ -4,12 +4,12 @@ import { Table } from "react-bootstrap";
 // icons
 import { AiFillEdit, AiOutlineDelete } from 'react-icons/ai';
 
-export default function PlaceTable({ places, setEditPlaceModal }) {
+export default function VideoTable({ videos, setEditVideoModal }) {
 
   // edit modal show
   const editModalHandle = (e) => {
     e.preventDefault();
-    setEditPlaceModal(true);
+    setEditVideoModal(true);
   }
 
   return (
@@ -21,17 +21,19 @@ export default function PlaceTable({ places, setEditPlaceModal }) {
           <th>Location</th>
           <th>Img</th>
           <th>Description</th>
+          <th>link</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        { places && places.map((place) => (
-          <tr key={place.id}>
-            <td>{ place.id }</td>
-            <td>{ place.name }</td>
-            <td>{ place.location }</td>
-            <td><img src={ place.img } alt="place img" width="100" height="auto" /></td>
-            <td>{ place.description.substring(0, 20) }</td>
+        { videos && videos.map((videoItem) => (
+          <tr key={videoItem.id}>
+            <td>{ videoItem.id }</td>
+            <td>{ videoItem.name }</td>
+            <td>{ videoItem.location }</td>
+            <td><img src={ videoItem.img } alt="place img" width="100" height="auto" /></td>
+            <td><a href={ videoItem.link }>Link</a></td>
+            <td>{ videoItem.description.substring(0, 20) }</td>
             <td>
               <a href="#edit" onClick={editModalHandle}>
                 <AiFillEdit className='text-warning me-3' />

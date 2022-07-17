@@ -48,14 +48,15 @@ export default function Login() {
               <Form onSubmit={loginSubmit}>
                 <Form.Group className="mb-3" controlId="email">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter email" required />
+                  <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="admin@gmail.com" required />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="password">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" required />
+                  <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="00000000" required />
                 </Form.Group>
 
+                <h5 className="text-danger">This is a test login! Please don't input randomly inside admin panel.</h5>
                 <h5 className="text-danger">{error}</h5>
 
                 <button className={`btn bg-success w-100 ${loading ? "disabled": ''}`} type='submit'>Submit</button>

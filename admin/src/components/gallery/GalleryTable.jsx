@@ -4,12 +4,12 @@ import { Table } from "react-bootstrap";
 // icons
 import { AiFillEdit, AiOutlineDelete } from 'react-icons/ai';
 
-export default function PlaceTable({ places, setEditPlaceModal }) {
+export default function GalleryTable({ gallery, setEditGalleryModal }) {
 
   // edit modal show
   const editModalHandle = (e) => {
     e.preventDefault();
-    setEditPlaceModal(true);
+    setEditGalleryModal(true);
   }
 
   return (
@@ -17,21 +17,16 @@ export default function PlaceTable({ places, setEditPlaceModal }) {
       <thead>
         <tr>
           <th>ID</th>
-          <th>Name</th>
           <th>Location</th>
           <th>Img</th>
-          <th>Description</th>
-          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        { places && places.map((place) => (
-          <tr key={place.id}>
-            <td>{ place.id }</td>
-            <td>{ place.name }</td>
-            <td>{ place.location }</td>
-            <td><img src={ place.img } alt="place img" width="100" height="auto" /></td>
-            <td>{ place.description.substring(0, 20) }</td>
+        { gallery && gallery.map((galleryItem) => (
+          <tr key={galleryItem.id}>
+            <td>{ galleryItem.id }</td>
+            <td>{ galleryItem.location }</td>
+            <td><img src={ galleryItem.img } alt="galley img" width="100" height="auto" /></td>
             <td>
               <a href="#edit" onClick={editModalHandle}>
                 <AiFillEdit className='text-warning me-3' />

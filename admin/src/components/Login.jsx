@@ -56,7 +56,7 @@ export default function Login() {
                   <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="00000000" required />
                 </Form.Group>
 
-                <h5 className="text-danger">This is a test login! Please don't input randomly inside admin panel.</h5>
+                <h5 className="text-danger">This is a demo login! Please don't input randomly inside admin panel.</h5>
                 <h5 className="text-danger">{error}</h5>
 
                 <button className={`btn bg-success w-100 ${loading ? "disabled": ''}`} type='submit'>Submit</button>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { Table } from "react-bootstrap";
 
 // icons
@@ -11,6 +12,10 @@ export default function PlaceTable({ places, setEditPlaceModal }) {
     e.preventDefault();
     setEditPlaceModal(true);
   }
+
+  useEffect(() => {
+    console.log(places);
+  });
 
   return (
     <Table striped bordered hover responsive>
@@ -31,7 +36,7 @@ export default function PlaceTable({ places, setEditPlaceModal }) {
             <td>{ place.name }</td>
             <td>{ place.location }</td>
             <td><img src={ place.img } alt="place img" width="100" height="auto" /></td>
-            <td>{ place.description.substring(0, 20) }</td>
+            <td>{ place.description }</td>
             <td>
               <a href="#edit" onClick={editModalHandle}>
                 <AiFillEdit className='text-warning me-3' />

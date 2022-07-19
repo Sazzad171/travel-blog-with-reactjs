@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Modal, Button } from "react-bootstrap";
 // for file upload
-import { ref, uploadBytesResumable } from 'firebase/storage';
-import { storage } from '../../firebase/firebase';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { db, storage } from '../../firebase/firebase';
+import { addDoc, collection } from 'firebase/firestore';
 
 // initial object value
 const initialValue = {
@@ -55,14 +56,26 @@ export default function PlaceCreate({ addPlaceModal, setAddPlaceModal }) {
           }
       }, (err) => {
         console.log(err);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setData((prev) => ({ ...prev, img: downloadURL }));
+        })
       });
     };
 
+    img && uploadImg();
+
   }, [img]);
 
-  // submit form
-  const submitForm = () => {
-    
+  // submit form and upload all info to firebase
+  const submitForm = async () => {
+    await addDoc(collection(db, "places"), {
+      name: data.name,
+      location: data.location,
+      description: data.description,
+      img: data.img
+    });
 
     setAddPlaceModal(false);
   }
@@ -91,7 +104,7 @@ export default function PlaceCreate({ addPlaceModal, setAddPlaceModal }) {
 
           <Form.Group className="mb-3" controlId="img">
             <Form.Label>Place image</Form.Label>
-            <Form.Control type="file" name="img" onChange={(e) => setImg(e.target.files[1])} placeholder="Select image file" required />
+            <Form.Control type="file" name="img" onChange={(e) => setImg(e.target.files[0])} placeholder="Select image file" required />
           </Form.Group>
         </Form>
         { error && <p className="text-danger">{error}</p> }

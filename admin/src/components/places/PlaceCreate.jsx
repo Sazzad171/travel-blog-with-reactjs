@@ -40,6 +40,7 @@ export default function PlaceCreate({ addPlaceModal, setAddPlaceModal }) {
       const storageRef = ref(storage, img.name);
       const uploadTask = uploadBytesResumable(storageRef, img);
 
+      // track upload status
       uploadTask.on("state_changed", (snapshot) => {
         const progress = 
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -71,10 +72,7 @@ export default function PlaceCreate({ addPlaceModal, setAddPlaceModal }) {
   // submit form and upload all info to firebase
   const submitForm = async () => {
     await addDoc(collection(db, "places"), {
-      name: data.name,
-      location: data.location,
-      description: data.description,
-      img: data.img
+      data
     });
 
     setAddPlaceModal(false);

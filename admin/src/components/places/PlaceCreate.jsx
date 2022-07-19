@@ -1,10 +1,69 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Modal, Button } from "react-bootstrap";
+// for file upload
+import { ref, uploadBytesResumable } from 'firebase/storage';
+import { storage } from '../../firebase/firebase';
+
+// initial object value
+const initialValue = {
+  name: '',
+  location: '',
+  description: ''
+}
 
 export default function PlaceCreate({ addPlaceModal, setAddPlaceModal }) {
 
   // close modal
   const handleClose = () => {
+    setAddPlaceModal(false);
+  }
+
+  // state for form upload
+  const [data, setData] = useState(initialValue);
+  const [img, setImg] = useState(null);
+  const [progress, setProgress] = useState(null);
+  const [error, setError] = useState(null);
+
+  // destruct data value
+  const {name, location, description} = data;
+
+  // input field handle change
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  }
+
+  useEffect(() => {
+    // img file upload
+    const uploadImg = () => {
+      const name = new Date().getTime() + img.name;
+      const storageRef = ref(storage, img.name);
+      const uploadTask = uploadBytesResumable(storageRef, img);
+
+      uploadTask.on("state_changed", (snapshot) => {
+        const progress = 
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setProgress(progress);
+          switch (snapshot.state) {
+            case "paused":
+              console.log("pause");
+              break;
+            case "running":
+              console.log("running");
+              break;
+            default:
+              break;
+          }
+      }, (err) => {
+        console.log(err);
+      });
+    };
+
+  }, [img]);
+
+  // submit form
+  const submitForm = () => {
+    
+
     setAddPlaceModal(false);
   }
 
@@ -14,33 +73,34 @@ export default function PlaceCreate({ addPlaceModal, setAddPlaceModal }) {
         <Modal.Title>Add new place</Modal.Title>
       </Modal.Header>
       <div className="modal-body">
-        <Form>
+        <Form onSubmit={submitForm}>
           <Form.Group className="mb-3" controlId="name">
             <Form.Label>Place Name</Form.Label>
-            <Form.Control type="text" placeholder="Enter place name" />
+            <Form.Control type="text" name="name" value={name} onChange={handleChange} placeholder="Enter place name" required />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="location">
             <Form.Label>Place location</Form.Label>
-            <Form.Control type="text" placeholder="Enter place location" />
+            <Form.Control type="text" name="location" value={location} onChange={handleChange} placeholder="Enter place location" required />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="description">
             <Form.Label>Place Description</Form.Label>
-            <Form.Control type="text" placeholder="Enter place description" />
+            <Form.Control type="text" name="description" value={description} onChange={handleChange} placeholder="Enter place description" required />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="img">
             <Form.Label>Place image</Form.Label>
-            <Form.Control type="file" placeholder="Select image file" />
+            <Form.Control type="file" name="img" onChange={(e) => setImg(e.target.files[1])} placeholder="Select image file" required />
           </Form.Group>
         </Form>
+        { error && <p className="text-danger">{error}</p> }
       </div>
       <Modal.Footer>
         <Button className='btn bg-danger btn-danger' onClick={handleClose}>
           Close
         </Button>
-        <Button className='btn bg-success btn-success' onClick={handleClose}>
+        <Button className='btn bg-success btn-success' onClick={submitForm}>
           Save Changes
         </Button>
       </Modal.Footer>

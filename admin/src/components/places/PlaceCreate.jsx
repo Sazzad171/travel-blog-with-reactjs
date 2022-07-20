@@ -3,7 +3,7 @@ import { Form, Modal, Button } from "react-bootstrap";
 // for file upload
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { db, storage } from '../../firebase/firebase';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, getDoc, doc, updateDoc } from 'firebase/firestore';
 
 // initial object value
 const initialValue = {
@@ -12,11 +12,13 @@ const initialValue = {
   description: ''
 }
 
-export default function PlaceCreate({ addEditPlaceModal, setAddEditPlaceModal, addModal }) {
+export default function PlaceCreate({ addEditPlaceModal, setAddEditPlaceModal, addModal, setAddModal, editId, setEditId }) {
 
   // close modal
   const handleClose = () => {
     setAddEditPlaceModal(false);
+    setAddModal(true);
+    setEditId(null);
   }
 
 
@@ -73,12 +75,43 @@ export default function PlaceCreate({ addEditPlaceModal, setAddEditPlaceModal, a
   }, [img]);
 
 
+  // update edit info when click edit
+  useEffect(() => {
+    if (editId !== null) {
+      let getSingleUser = async () => {
+        const docRef = doc(db, "places", editId);
+        const snapshot = await getDoc(docRef);
+        if (snapshot.exists()) {
+          setData({ ...snapshot.data() });
+        }
+      }
+      getSingleUser();
+    }
+  }, [editId]);
+
+
   // submit form and upload all info to firebase
   const submitForm = async () => {
     if (data.name !== '' && data.location !== '' && data.description !== '' && img !== '') {
-      await addDoc(collection(db, "places"), data);
+
+      // check if add modal or edit modal
+      if (addModal) {
+        await addDoc(collection(db, "places"), data);
+      }
+      // update edited data
+      else {
+        try {
+          await updateDoc(doc(db, "places", editId), data);
+        }
+        catch(err) {
+          console.log(err);
+        }
+
+        setEditId(null);
+      }
 
       setAddEditPlaceModal(false);
+      setAddModal(true);
     }
     else setError("Please fillup all fields!");
   }

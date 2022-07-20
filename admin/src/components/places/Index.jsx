@@ -6,8 +6,12 @@ import PlaceTable from './PlaceTable';
 export default function Index({ places, setPlaces }) {
 
   // state
+  // modal handle
   const [addEditPlaceModal, setAddEditPlaceModal] = useState(false);
+  // for detect modal is edit or create
   const [addModal, setAddModal] = useState(true);
+  // set edit id
+  const [editId, setEditId] = useState(null);
 
   // modal handle
   const addEditPlaceModalHandle = () => {
@@ -27,10 +31,12 @@ export default function Index({ places, setPlaces }) {
             </p>
           </Col>
         </Row>
-        <PlaceTable places={ places } setPlaces={ setPlaces } setAddEditPlaceModal={ setAddEditPlaceModal } setAddModal={ setAddModal } />
+        <PlaceTable places={ places } setPlaces={ setPlaces } setAddEditPlaceModal={ setAddEditPlaceModal }
+          setAddModal={ setAddModal } setEditId={ setEditId } />
 
         {/* modal */}
-        {addEditPlaceModal && <PlaceCreate addEditPlaceModal={ addEditPlaceModal } setAddEditPlaceModal={ setAddEditPlaceModal } addModal={ addModal } />}
+        {addEditPlaceModal && <PlaceCreate addEditPlaceModal={ addEditPlaceModal } setAddEditPlaceModal={ setAddEditPlaceModal }
+          addModal={ addModal } setAddModal={ setAddModal } editId={ editId } setEditId={ setEditId } />}
 
       </div>
     </Col>

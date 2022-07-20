@@ -8,6 +8,12 @@ export default function VideoEdit({ editVideoModal, setEditVideoModal }) {
     setEditVideoModal(false);
   }
 
+    // after form submit
+    const handleSubmit = () => {
+      setEditVideoModal(false);
+      alert("You have no permission to edit video item!");
+    }
+
   return (
   <Modal show={editVideoModal} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -45,7 +51,7 @@ export default function VideoEdit({ editVideoModal, setEditVideoModal }) {
         <Button className='btn bg-danger btn-danger' onClick={handleClose}>
           Close
         </Button>
-        <Button className='btn bg-success btn-success' onClick={handleClose}>
+        <Button className='btn bg-success btn-success' onClick={handleSubmit}>
           Save Changes
         </Button>
       </Modal.Footer>

@@ -8,6 +8,12 @@ export default function GalleryCreate({ addGalleryModal, setAddGalleryModal }) {
     setAddGalleryModal(false);
   }
 
+    // after form submit
+    const handleSubmit = () => {
+      setAddGalleryModal(false);
+      alert("You have no permission to create gallery item!");
+    }
+
   return (
   <Modal show={addGalleryModal} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -30,7 +36,7 @@ export default function GalleryCreate({ addGalleryModal, setAddGalleryModal }) {
         <Button className='btn bg-danger btn-danger' onClick={handleClose}>
           Close
         </Button>
-        <Button className='btn bg-success btn-success' onClick={handleClose}>
+        <Button className='btn bg-success btn-success' onClick={handleSubmit}>
           Save Changes
         </Button>
       </Modal.Footer>

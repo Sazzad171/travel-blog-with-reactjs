@@ -12,6 +12,11 @@ export default function VideoTable({ videos, setEditVideoModal }) {
     setEditVideoModal(true);
   }
 
+    // click delete
+    const handleDelete = () => {
+      alert("You have no permission to delete video item!");
+    }
+
   return (
     <Table striped bordered hover responsive>
       <thead>
@@ -38,7 +43,7 @@ export default function VideoTable({ videos, setEditVideoModal }) {
               <a href="#edit" onClick={editModalHandle}>
                 <AiFillEdit className='text-warning me-3' />
               </a>
-              <a href="#delete">
+              <a href="#delete" onClick={handleDelete}>
                 <AiOutlineDelete className='text-danger' />
               </a>
             </td>

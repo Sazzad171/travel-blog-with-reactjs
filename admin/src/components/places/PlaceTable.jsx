@@ -7,28 +7,33 @@ import { deleteDoc, doc } from 'firebase/firestore';
 // icons
 import { AiFillEdit, AiOutlineDelete } from 'react-icons/ai';
 
-export default function PlaceTable({ places, setPlaces, setAddEditPlaceModal, setAddModal }) {
+export default function PlaceTable({ places, setPlaces, setAddEditPlaceModal, setAddModal, setEditId }) {
 
   // edit modal show
-  const editModalHandle = (e) => {
+  const editModalHandle = (e, id) => {
     e.preventDefault();
     setAddEditPlaceModal(true);
     setAddModal(false);
+    setEditId(id);
   }
 
   // delete item
   const handleDelete = async (e, id) => {
     e.preventDefault();
 
-    if (window.confirm("Are you sure to delete this item?")) {
-      try {
-        await deleteDoc(doc(db, "places", id));
-        setPlaces(places.filter((place) => place.id !== id));
-      }
-      catch {
-        alert("Error to delete this item!");
+    // anyone can't delete fixed items
+    if (id!=="1" && id!=="2" && id!=="3") {
+      if (window.confirm("Are you sure to delete this item?")) {
+        try {
+          await deleteDoc(doc(db, "places", id));
+          setPlaces(places.filter((place) => place.id !== id));
+        }
+        catch {
+          alert("Error to delete this item!");
+        }
       }
     }
+    else alert("You have no permission to delete this place");
   }
 
   return (
@@ -52,7 +57,7 @@ export default function PlaceTable({ places, setPlaces, setAddEditPlaceModal, se
             <td><img src={ place.img } alt="place img" width="100" height="auto" /></td>
             <td>{ place.description.substring(0, 10) }{ place.description.length > 10 ? "..." : null }</td>
             <td>
-              <a href="#edit" onClick={editModalHandle}>
+              <a href="#edit" onClick={(e) => editModalHandle(e, place.id)}>
                 <AiFillEdit className='text-warning me-3' />
               </a>
               <a href="#delete" onClick={ (e) => handleDelete(e, place.id) }>

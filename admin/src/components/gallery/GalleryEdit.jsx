@@ -8,6 +8,12 @@ export default function GalleryEdit({ editGalleryModal, setEditGalleryModal }) {
     setEditGalleryModal(false);
   }
 
+    // after form submit
+    const handleSubmit = () => {
+      setEditGalleryModal(false);
+      alert("You have no permission to edit gallery item!");
+    }
+
   return (
   <Modal show={editGalleryModal} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -30,7 +36,7 @@ export default function GalleryEdit({ editGalleryModal, setEditGalleryModal }) {
         <Button className='btn bg-danger btn-danger' onClick={handleClose}>
           Close
         </Button>
-        <Button className='btn bg-success btn-success' onClick={handleClose}>
+        <Button className='btn bg-success btn-success' onClick={handleSubmit}>
           Save Changes
         </Button>
       </Modal.Footer>

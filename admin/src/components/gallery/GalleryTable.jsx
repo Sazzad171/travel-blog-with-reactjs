@@ -12,6 +12,11 @@ export default function GalleryTable({ gallery, setEditGalleryModal }) {
     setEditGalleryModal(true);
   }
 
+    // delete
+    const handleDelete = () => {
+      alert("You have no permission to delete video item!");
+    }
+
   return (
     <Table striped bordered hover responsive>
       <thead>
@@ -31,7 +36,7 @@ export default function GalleryTable({ gallery, setEditGalleryModal }) {
               <a href="#edit" onClick={editModalHandle}>
                 <AiFillEdit className='text-warning me-3' />
               </a>
-              <a href="#delete">
+              <a href="#delete" onClick={handleDelete}>
                 <AiOutlineDelete className='text-danger' />
               </a>
             </td>

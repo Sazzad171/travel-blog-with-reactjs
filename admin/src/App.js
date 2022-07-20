@@ -91,7 +91,7 @@ function App() {
             {/* private route */}
             <Route path="/*" element={<PrivateRoute />}>
               <Route path="dashboard" element={<Dashboard />} />
-              <Route path="places" element={<Places places={ places } />} />
+              <Route path="places" element={<Places places={ places } setPlaces={ setPlaces } />} />
               <Route path="videos" element={<Videos videos={ videos } />} />
               <Route path="gallery" element={<Gallery gallery={ gallery } />} />
             </Route>

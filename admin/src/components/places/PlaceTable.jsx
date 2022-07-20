@@ -1,11 +1,13 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { Table } from "react-bootstrap";
+// firebase
+import { db } from '../../firebase/firebase';
+import { deleteDoc, doc } from 'firebase/firestore';
 
 // icons
 import { AiFillEdit, AiOutlineDelete } from 'react-icons/ai';
 
-export default function PlaceTable({ places, setEditPlaceModal }) {
+export default function PlaceTable({ places, setPlaces, setEditPlaceModal }) {
 
   // edit modal show
   const editModalHandle = (e) => {
@@ -13,9 +15,20 @@ export default function PlaceTable({ places, setEditPlaceModal }) {
     setEditPlaceModal(true);
   }
 
-  useEffect(() => {
-    console.log(places);
-  });
+  // delete item
+  const handleDelete = async (e, id) => {
+    e.preventDefault();
+
+    if (window.confirm("Are you sure to delete this item?")) {
+      try {
+        await deleteDoc(doc(db, "places", id));
+        setPlaces(places.filter((id) => places.id !== id));
+      }
+      catch {
+
+      }
+    }
+  }
 
   return (
     <Table striped bordered hover responsive>
@@ -36,12 +49,12 @@ export default function PlaceTable({ places, setEditPlaceModal }) {
             <td>{ place.name }</td>
             <td>{ place.location }</td>
             <td><img src={ place.img } alt="place img" width="100" height="auto" /></td>
-            <td>{ place.description }</td>
+            <td>{ place.description.substring(0, 10) }{ place.description.length > 10 ? "..." : null }</td>
             <td>
               <a href="#edit" onClick={editModalHandle}>
                 <AiFillEdit className='text-warning me-3' />
               </a>
-              <a href="#delete">
+              <a href="#delete" onClick={ (e) => handleDelete(e, place.id) }>
                 <AiOutlineDelete className='text-danger' />
               </a>
             </td>

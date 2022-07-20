@@ -19,6 +19,7 @@ export default function PlaceCreate({ addPlaceModal, setAddPlaceModal }) {
     setAddPlaceModal(false);
   }
 
+
   // state for form upload
   const [data, setData] = useState(initialValue);
   const [img, setImg] = useState(null);
@@ -28,23 +29,25 @@ export default function PlaceCreate({ addPlaceModal, setAddPlaceModal }) {
   // destruct data value
   const {name, location, description} = data;
 
+
   // input field handle change
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   }
 
+
   useEffect(() => {
     // img file upload
     const uploadImg = () => {
-      const name = new Date().getTime() + img.name;
+      // const name = new Date().getTime() + img.name;
       const storageRef = ref(storage, img.name);
       const uploadTask = uploadBytesResumable(storageRef, img);
 
       // track upload status
       uploadTask.on("state_changed", (snapshot) => {
-        const progress = 
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setProgress(progress);
+          if ( progress === 100 ) setProgress(null);
           switch (snapshot.state) {
             case "paused":
               console.log("pause");
@@ -56,7 +59,7 @@ export default function PlaceCreate({ addPlaceModal, setAddPlaceModal }) {
               break;
           }
       }, (err) => {
-        console.log(err);
+        setError(err);
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -69,13 +72,15 @@ export default function PlaceCreate({ addPlaceModal, setAddPlaceModal }) {
 
   }, [img]);
 
+
   // submit form and upload all info to firebase
   const submitForm = async () => {
-    await addDoc(collection(db, "places"), {
-      data
-    });
+    if (data.name !== '' && data.location !== '' && data.description !== '' && img !== '') {
+      await addDoc(collection(db, "places"), data);
 
-    setAddPlaceModal(false);
+      setAddPlaceModal(false);
+    }
+    else setError("Please fillup all fields!");
   }
 
   return (
@@ -103,6 +108,9 @@ export default function PlaceCreate({ addPlaceModal, setAddPlaceModal }) {
           <Form.Group className="mb-3" controlId="img">
             <Form.Label>Place image</Form.Label>
             <Form.Control type="file" name="img" onChange={(e) => setImg(e.target.files[0])} placeholder="Select image file" required />
+            {
+              progress !== null && <p><small>Img is uploading. Please Wait!</small></p>
+            }
           </Form.Group>
         </Form>
         { error && <p className="text-danger">{error}</p> }
@@ -111,7 +119,7 @@ export default function PlaceCreate({ addPlaceModal, setAddPlaceModal }) {
         <Button className='btn bg-danger btn-danger' onClick={handleClose}>
           Close
         </Button>
-        <Button className='btn bg-success btn-success' onClick={submitForm}>
+        <Button className={`btn bg-success btn-success ${progress !== null ? 'disabled' : ''}`} onClick={submitForm}>
           Save Changes
         </Button>
       </Modal.Footer>

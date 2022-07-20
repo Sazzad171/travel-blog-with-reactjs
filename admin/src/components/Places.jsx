@@ -7,7 +7,7 @@ import { Container, Row } from "react-bootstrap";
 import LeftSidebar from './LeftSidebar';
 import Index from './places/Index';
 
-export default function Places({ places }) {
+export default function Places({ places, setPlaces }) {
   return (
     <Container>
       <Row>
@@ -15,7 +15,7 @@ export default function Places({ places }) {
         <LeftSidebar />
 
         {/* right side */}
-        <Index places={ places } />
+        <Index places={ places } setPlaces={ setPlaces } />
       </Row>
     </Container>
   )

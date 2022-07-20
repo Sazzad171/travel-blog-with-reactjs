@@ -4,7 +4,7 @@ import PlaceCreate from './PlaceCreate';
 import PlaceEdit from './PlaceEdit';
 import PlaceTable from './PlaceTable';
 
-export default function Index({ places }) {
+export default function Index({ places, setPlaces }) {
 
   // state
   const [addPlaceModal, setAddPlaceModal] = useState(false);
@@ -28,7 +28,7 @@ export default function Index({ places }) {
             </p>
           </Col>
         </Row>
-        <PlaceTable places={ places } setEditPlaceModal={ setEditPlaceModal } />
+        <PlaceTable places={ places } setPlaces={ setPlaces } setEditPlaceModal={ setEditPlaceModal } />
 
         {/* modal */}
         {addPlaceModal && <PlaceCreate addPlaceModal={ addPlaceModal } setAddPlaceModal={ setAddPlaceModal } />}

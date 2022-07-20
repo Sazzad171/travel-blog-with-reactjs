@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { Col, Row } from "react-bootstrap";
 import PlaceCreate from './PlaceCreate';
-import PlaceEdit from './PlaceEdit';
 import PlaceTable from './PlaceTable';
 
 export default function Index({ places, setPlaces }) {
 
   // state
-  const [addPlaceModal, setAddPlaceModal] = useState(false);
-  const [editPlaceModal, setEditPlaceModal] = useState(false);
+  const [addEditPlaceModal, setAddEditPlaceModal] = useState(false);
+  const [addModal, setAddModal] = useState(true);
 
   // modal handle
-  const addPlaceModalHandle = () => {
-    setAddPlaceModal(true);
+  const addEditPlaceModalHandle = () => {
+    setAddEditPlaceModal(true);
   }
 
   return (
@@ -24,15 +23,14 @@ export default function Index({ places, setPlaces }) {
           </Col>
           <Col>
             <p className="text-md-end text-center">
-              <button className="btn bg-success btn-success table-btn" onClick={addPlaceModalHandle}>Add new place</button>
+              <button className="btn bg-success btn-success table-btn" onClick={addEditPlaceModalHandle}>Add new place</button>
             </p>
           </Col>
         </Row>
-        <PlaceTable places={ places } setPlaces={ setPlaces } setEditPlaceModal={ setEditPlaceModal } />
+        <PlaceTable places={ places } setPlaces={ setPlaces } setAddEditPlaceModal={ setAddEditPlaceModal } setAddModal={ setAddModal } />
 
         {/* modal */}
-        {addPlaceModal && <PlaceCreate addPlaceModal={ addPlaceModal } setAddPlaceModal={ setAddPlaceModal } />}
-        {editPlaceModal && <PlaceEdit editPlaceModal={ editPlaceModal } setEditPlaceModal={ setEditPlaceModal } />}
+        {addEditPlaceModal && <PlaceCreate addEditPlaceModal={ addEditPlaceModal } setAddEditPlaceModal={ setAddEditPlaceModal } addModal={ addModal } />}
 
       </div>
     </Col>

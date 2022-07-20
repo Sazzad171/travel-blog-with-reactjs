@@ -12,11 +12,11 @@ const initialValue = {
   description: ''
 }
 
-export default function PlaceCreate({ addPlaceModal, setAddPlaceModal }) {
+export default function PlaceCreate({ addEditPlaceModal, setAddEditPlaceModal, addModal }) {
 
   // close modal
   const handleClose = () => {
-    setAddPlaceModal(false);
+    setAddEditPlaceModal(false);
   }
 
 
@@ -78,15 +78,15 @@ export default function PlaceCreate({ addPlaceModal, setAddPlaceModal }) {
     if (data.name !== '' && data.location !== '' && data.description !== '' && img !== '') {
       await addDoc(collection(db, "places"), data);
 
-      setAddPlaceModal(false);
+      setAddEditPlaceModal(false);
     }
     else setError("Please fillup all fields!");
   }
 
   return (
-  <Modal show={addPlaceModal} onHide={handleClose}>
+  <Modal show={addEditPlaceModal} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Add new place</Modal.Title>
+        <Modal.Title>{ addModal ? "Add new place" : "Edit place" }</Modal.Title>
       </Modal.Header>
       <div className="modal-body">
         <Form onSubmit={submitForm}>

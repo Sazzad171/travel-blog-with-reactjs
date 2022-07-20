@@ -7,12 +7,13 @@ import { deleteDoc, doc } from 'firebase/firestore';
 // icons
 import { AiFillEdit, AiOutlineDelete } from 'react-icons/ai';
 
-export default function PlaceTable({ places, setPlaces, setEditPlaceModal }) {
+export default function PlaceTable({ places, setPlaces, setAddEditPlaceModal, setAddModal }) {
 
   // edit modal show
   const editModalHandle = (e) => {
     e.preventDefault();
-    setEditPlaceModal(true);
+    setAddEditPlaceModal(true);
+    setAddModal(false);
   }
 
   // delete item
@@ -22,10 +23,10 @@ export default function PlaceTable({ places, setPlaces, setEditPlaceModal }) {
     if (window.confirm("Are you sure to delete this item?")) {
       try {
         await deleteDoc(doc(db, "places", id));
-        setPlaces(places.filter((id) => places.id !== id));
+        setPlaces(places.filter((place) => place.id !== id));
       }
       catch {
-
+        alert("Error to delete this item!");
       }
     }
   }

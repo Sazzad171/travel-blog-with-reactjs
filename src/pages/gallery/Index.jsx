@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 
 // responsive masonry
@@ -8,6 +8,11 @@ import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import PageHeader from "../../layout/PageHeader"
 
 export default function Index( {gallery} ) {
+
+  // page title
+  useEffect(() => {
+    document.title='Gallery | Nature Lovers BD';
+  });
 
   return (
     <>

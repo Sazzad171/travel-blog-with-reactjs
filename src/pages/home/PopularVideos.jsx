@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import {Col, Container, Row, Card} from 'react-bootstrap';
+import {Col, Container, Row, Card, Placeholder} from 'react-bootstrap';
 
 // icons
 import { BsPlayCircle } from 'react-icons/bs';
 import { FaMapMarkerAlt } from "react-icons/fa";
 
-export default function Home({ videos }) {
+export default function Home({ videos, videoLoding }) {
 
   return (
     <>
@@ -25,7 +25,25 @@ export default function Home({ videos }) {
           <Row>
 
             {/* video item */}
-            {
+            { videoLoding ?
+              <Row>
+                <Col>
+                  <Placeholder animation="glow">
+                    <Placeholder md={12} style={{height: '10rem'}} className="rounded" />
+                  </Placeholder>
+                </Col>
+                <Col>
+                  <Placeholder animation="glow">
+                    <Placeholder md={12} style={{height: '10rem'}} className="rounded" />
+                  </Placeholder>
+                </Col>
+                <Col>
+                  <Placeholder animation="glow">
+                    <Placeholder md={12} style={{height: '10rem'}} className="rounded" />
+                  </Placeholder>
+                </Col>
+              </Row>
+              :
               videos && videos.slice(0, 3).map((video) => (
                 <Col md={4} className='mb-3 px-md-4' key={video.id}>
                   <Link to={`/video-details/${video.id}`}>
@@ -46,8 +64,6 @@ export default function Home({ videos }) {
                 </Col>
               ))
             }
-
-            
           </Row>
         </Container>
       </section>

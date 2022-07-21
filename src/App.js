@@ -24,10 +24,16 @@ function App() {
   const [places, setPlaces] = useState([]);
   const [videos, setVideos] = useState([]);
   const [gallery, setGallery] = useState([]);
+  // states for preloader
+  const [placeLoding, setPlaceLoading] = useState(false);
+  const [videoLoding, setVideoLoading] = useState(false);
+  const [galleryLoding, setGalleryLoading] = useState(false);
 
   // get data from firebase
   useEffect(() => {
     // get places data from firebase
+    setPlaceLoading(true);
+
     const unsub = onSnapshot(
       collection(db, "places"),
       (snapshot) => {
@@ -36,6 +42,7 @@ function App() {
           placeList.push({ id: doc.id, ...doc.data() });
         });
         setPlaces(placeList);
+        setPlaceLoading(false);
       },
       (error) => {
         console.log(error);
@@ -43,6 +50,8 @@ function App() {
     );
 
     // get videos data from firebase
+    setVideoLoading(true);
+
     const unsubVideo = onSnapshot(
       collection(db, "Videos"),
       (snapshot) => {
@@ -51,10 +60,13 @@ function App() {
           videoList.push({ id: doc.id, ...doc.data() });
         });
         setVideos(videoList);
+        setVideoLoading(false);
       }
     );
 
     // get gallery data from firebase
+    setGalleryLoading(true);
+
     const unsubGallery = onSnapshot(
       collection(db, "gallery"),
       (snapshot) => {
@@ -63,6 +75,7 @@ function App() {
           galleryList.push({ id: doc.id, ...doc.data() });
         });
         setGallery(galleryList);
+        setGalleryLoading(false);
       }
     );
 
@@ -78,7 +91,8 @@ function App() {
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={<Home places={ places } videos={ videos } gallery={ gallery } />} />
+          <Route path="/" element={<Home places={ places } videos={ videos } gallery={ gallery } 
+            placeLoding={placeLoding} videoLoding={videoLoding} galleryLoding={galleryLoding} />} />
           <Route path="/places" element={<Places places={ places } />} />
           <Route path="/place-details/:id" element={<PlaceDetails places={ places } gallery={ gallery } />} />
           <Route path="/videos" element={<Videos videos={ videos } />} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
 // components
@@ -8,6 +8,12 @@ import PageHeader from '../../layout/PageHeader';
 import about from '../../assets/img/home-banner/1.jpg';
 
 export default function About() {
+
+  // page title
+  useEffect(() => {
+    document.title='About | Nature Lovers BD';
+  });
+
   return (
     <>
       <PageHeader />

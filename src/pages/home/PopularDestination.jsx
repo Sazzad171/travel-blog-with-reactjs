@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import {Col, Container, Row, Card} from 'react-bootstrap';
+import {Col, Container, Row, Card, Placeholder } from 'react-bootstrap';
 
 // icons
 import { BsArrowRightShort } from 'react-icons/bs';
 
-export default function Home({ places }) {
+export default function Home({ places, placeLoding }) {
 
   return (
     <>
@@ -24,7 +24,25 @@ export default function Home({ places }) {
           <Row>
 
             {/* destination item */}
-            {
+            { placeLoding ? 
+              <Row>
+                <Col>
+                  <Placeholder animation="glow">
+                    <Placeholder md={12} style={{height: '10rem'}} className="rounded" />
+                  </Placeholder>
+                </Col>
+                <Col>
+                  <Placeholder animation="glow">
+                    <Placeholder md={12} style={{height: '10rem'}} className="rounded" />
+                  </Placeholder>
+                </Col>
+                <Col>
+                  <Placeholder animation="glow">
+                    <Placeholder md={12} style={{height: '10rem'}} className="rounded" />
+                  </Placeholder>
+                </Col>
+              </Row>
+              :
               places && places.slice(0, 6).map( (place, i) => (
                 <Col md={4} className='mb-3' key={ i }>
                   <Card className='h-100 shadow border-0'>

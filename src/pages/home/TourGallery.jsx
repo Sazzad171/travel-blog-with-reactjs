@@ -1,12 +1,12 @@
 import React from 'react';
-import {Col, Container, Row} from 'react-bootstrap';
+import {Col, Container, Row, Placeholder} from 'react-bootstrap';
 
 // slick slider 
 import Slider from "react-slick";
 import "../../assets/plugins/slick/slick.css"; 
 import "../../assets/plugins/slick/slick.theme.css";
 
-export default function Home({ gallery }) {
+export default function Home({ gallery, galleryLoding }) {
 
   // slick slider
   const slickSettings = {
@@ -51,7 +51,11 @@ export default function Home({ gallery }) {
         <Container fluid className='px-0'>
           {/* slider */}
           <Slider {...slickSettings}>
-            {
+            { galleryLoding ?
+              <Placeholder animation="glow">
+                <Placeholder md={12} style={{height: '10rem'}} />
+              </Placeholder>
+              :
               gallery.map((galleryItem) => (
                 <div className='slider-item position-relative' key={ galleryItem.id }>
                   <img src={ galleryItem.img } className='img-fluid' alt="img" />

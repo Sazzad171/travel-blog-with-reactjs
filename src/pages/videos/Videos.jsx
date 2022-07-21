@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import {Col, Container, Row, Card} from 'react-bootstrap';
 
@@ -10,6 +10,12 @@ import { BsPlayCircle } from 'react-icons/bs';
 import { FaMapMarkerAlt } from "react-icons/fa";
 
 export default function Videos({ videos }) {
+
+  // page title
+  useEffect(() => {
+    document.title='Videos | Nature Lovers BD';
+  });
+
   return (
     <>
       <PageHeader />

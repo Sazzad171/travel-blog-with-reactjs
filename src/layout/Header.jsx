@@ -59,7 +59,7 @@ export default function Header() {
                 <Link to="/gallery" className='nav-link' onClick={toggleOffCanvas}>Gallery</Link>
                 <Link to="/about" className='nav-link' onClick={toggleOffCanvas}>About</Link>
                 <Link to="/contact" className='nav-link' onClick={toggleOffCanvas}>Contact</Link>
-                <a href="https://nature-lovers-bd-admin.netlify.app/" className='nav-link' target="_blank" rel="”noreferrer”">Admin</a>
+                <a href="https://nature-lovers-bd-admin.netlify.app/" className='nav-link' target="_blank" rel="noreferrer">Admin</a>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
